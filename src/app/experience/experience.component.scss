@@ -76,6 +76,10 @@
               border: 1px solid #bcbcbc;
               background: #ffffff;
               border-radius: 4px;
+              outline: none;
+            }
+            &__name:focus {
+              border: 2px solid #bcbcbc;
             }
           }
           &__lastnameCon {
@@ -88,6 +92,10 @@
               border: 1px solid #bcbcbc;
               background: #ffffff;
               border-radius: 4px;
+              outline: none;
+            }
+            &__lastName:focus {
+              border: 2px solid #bcbcbc;
             }
           }
         }
@@ -100,6 +108,10 @@
             border: 1px solid #bcbcbc;
             background: #ffffff;
             border-radius: 4px;
+            outline: none;
+          }
+          &__text:focus {
+            border: 2px solid #bcbcbc;
           }
         }
         &__mail {
@@ -114,6 +126,10 @@
             background: #ffffff;
             border-radius: 4px;
             height: 30px;
+            outline: none;
+          }
+          &__mailTxt:focus {
+            border: 2px solid #bcbcbc;
           }
           &__required {
             color: #2e2e2e;
@@ -134,6 +150,10 @@
             background: #ffffff;
             border-radius: 4px;
             height: 30px;
+            outline: none;
+          }
+          &__mobileNum:focus {
+            border: 2px solid #bcbcbc;
           }
 
           &__required {
@@ -148,7 +168,7 @@
           margin-top: 25px;
           width: 100%;
           display: flex;
-          justify-content: end;
+          justify-content: space-between;
           &__btn {
             width: 120px;
             height: 40px;
