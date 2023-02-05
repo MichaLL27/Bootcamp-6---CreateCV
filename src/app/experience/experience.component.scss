@@ -65,62 +65,33 @@
           display: flex;
           justify-content: space-between;
           width: 100%;
+          margin-top: 15px;
           &__nameCon {
             width: 50%;
             height: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
             &__name {
+              margin-top: 10px;
               width: 90%;
               height: 30px;
               border: 1px solid #bcbcbc;
               background: #ffffff;
               border-radius: 4px;
-              outline: none;
-            }
-            &__name:focus {
-              border: 2px solid #bcbcbc;
-            }
-            &__required {
-              color: #2e2e2e;
-              font-style: normal;
-              font-weight: 300;
-              font-size: 14px;
-              line-height: 21px;
             }
           }
           &__lastnameCon {
             width: 50%;
             height: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
             &__lastName {
+              margin-top: 10px;
               width: 90%;
               height: 30px;
               border: 1px solid #bcbcbc;
               background: #ffffff;
               border-radius: 4px;
-              outline: none;
-            }
-            &__lastName:focus {
-              border: 2px solid #bcbcbc;
-            }
-            &__required {
-              color: #2e2e2e;
-              font-style: normal;
-              font-weight: 300;
-              font-size: 14px;
-              line-height: 21px;
             }
           }
         }
-        &__uploadPhoto {
-          margin-top: 25px;
-        }
         &__description {
-          margin-top: 25px;
           display: flex;
           flex-direction: column;
           &__text {
@@ -129,10 +100,6 @@
             border: 1px solid #bcbcbc;
             background: #ffffff;
             border-radius: 4px;
-            outline: none;
-          }
-          &__text:focus {
-            border: 2px solid #bcbcbc;
           }
         }
         &__mail {
@@ -147,10 +114,6 @@
             background: #ffffff;
             border-radius: 4px;
             height: 30px;
-            outline: none;
-          }
-          &__mailTxt:focus {
-            border: 2px solid #bcbcbc;
           }
           &__required {
             color: #2e2e2e;
@@ -171,10 +134,6 @@
             background: #ffffff;
             border-radius: 4px;
             height: 30px;
-            outline: none;
-          }
-          &__mobileNum:focus {
-            border: 2px solid #bcbcbc;
           }
 
           &__required {

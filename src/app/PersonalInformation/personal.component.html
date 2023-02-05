@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="all__firstCon__inputCon">
-      <div class="all__firstCon__inputCon__mainCon">
+      <form class="all__firstCon__inputCon__mainCon">
         <div class="all__firstCon__inputCon__mainCon__both">
           <div class="all__firstCon__inputCon__mainCon__both__nameCon">
             <p>სახელი</p>
@@ -82,16 +82,23 @@
           <input
             class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
             type="number"
-            required
             placeholder="+995 551 12 34 56"
+            required
           />
           <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
             უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
           </p>
         </div>
-      </div>
+        <div class="all__firstCon__inputCon__mainCon__btnDiv">
+          <input
+            type="submit"
+            class="all__firstCon__inputCon__mainCon__btnDiv__btn"
+            [routerLink]="['/Experience']"
+            value="შემდეგი"
+          />
+        </div>
+      </form>
     </div>
-    <button [routerLink]="['/Experience']">შემდეგი</button>
   </div>
   <div class="all__secondCon"></div>
 </div>
