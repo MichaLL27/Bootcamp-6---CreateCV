@@ -7,6 +7,7 @@ import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { MainComponent } from './mainPage/main.component';
 import { personalInfoComponent } from './PersonalInformation/personal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { personalInfoComponent } from './PersonalInformation/personal.component'
     ExperienceComponent,
     EducationComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
