@@ -30,4 +30,7 @@ export class personalInfoComponent implements OnInit {
     ];
     console.log(createPersonalInfo);
   }
+  change(): void {
+    console.log(this.personalInfo.controls.name.value);
+  }
 }
