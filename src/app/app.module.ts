@@ -9,6 +9,7 @@ import { MainComponent } from './mainPage/main.component';
 import { personalInfoComponent } from './PersonalInformation/personal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CvComponent } from './CV/cv.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     personalInfoComponent,
     ExperienceComponent,
     EducationComponent,
+    CvComponent,
   ],
   imports: [
     BrowserModule,
