@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="all__firstCon__inputCon">
-      <form class="all__firstCon__inputCon__mainCon">
+      <form [formGroup]="personalInfo" class="all__firstCon__inputCon__mainCon">
         <div class="all__firstCon__inputCon__mainCon__both">
           <div class="all__firstCon__inputCon__mainCon__both__nameCon">
             <p>სახელი</p>
@@ -29,7 +29,9 @@
               type="text"
               name="name"
               placeholder="ანზორ"
+              formControlName="name"
               required
+              value=""
             />
             <p
               class="all__firstCon__inputCon__mainCon__both__nameCon__required"
@@ -44,7 +46,9 @@
               type="text"
               name="lastname"
               placeholder="მუმლაძე"
+              formControlName="lastName"
               required
+              value=""
             />
             <p
               class="all__firstCon__inputCon__mainCon__both__nameCon__required"
@@ -55,7 +59,15 @@
         </div>
         <div class="all__firstCon__inputCon__mainCon__uploadPhoto">
           <label for="img">პირადი ფოტოს ატვირთვა</label>
-          <input type="file" id="img" name="img" accept="image/*" required />
+          <input
+            type="file"
+            id="img"
+            name="img"
+            accept="image/*"
+            required
+            formControlName="image"
+            value=""
+          />
         </div>
         <div class="all__firstCon__inputCon__mainCon__description">
           <label for="description">ჩემ შესახებ (არასავალდებულო)</label>
@@ -63,6 +75,8 @@
             class="all__firstCon__inputCon__mainCon__description__text"
             type="text"
             placeholder="ზოგადი ინფო შენ შესახებ"
+            formControlName="description"
+            value=""
           />
         </div>
         <div class="all__firstCon__inputCon__mainCon__mail">
@@ -72,6 +86,8 @@
             type="email"
             required
             placeholder="anzorr666@redberry.ge"
+            formControlName="email"
+            value=""
           />
           <p class="all__firstCon__inputCon__mainCon__mail__required">
             უნდა მთავრდებოდეს @redberry.ge-ით
@@ -84,6 +100,8 @@
             type="number"
             placeholder="+995 551 12 34 56"
             required
+            formControlName="mobileNum"
+            value=""
           />
           <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
             უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
@@ -93,7 +111,7 @@
           <input
             type="submit"
             class="all__firstCon__inputCon__mainCon__btnDiv__btn"
-            [routerLink]="['/Experience']"
+            (click)="personal()"
             value="შემდეგი"
           />
         </div>
