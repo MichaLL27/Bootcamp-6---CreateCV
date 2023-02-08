@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'personal.component.html',
   styleUrls: ['./personal.component.scss'],
 })
 export class personalInfoComponent implements OnInit {
-  item: any;
+  constructor(private router: Router) {}
   personalInfo = new FormGroup({
     name: new FormControl('', [
       Validators.required,
       Validators.pattern('[ა-ჰ].*'),
     ]),
-    lastName: new FormControl(''),
-    image: new FormControl(''),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[ა-ჰ].*'),
+    ]),
+    image: new FormControl('', [Validators.required]),
     description: new FormControl(''),
-    email: new FormControl(''),
-    mobileNum: new FormControl(''),
+    email: new FormControl('', [Validators.required]),
+    mobileNum: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {
     this.personalInfo.valueChanges.subscribe((x) => {
-      this.item = x;
+      console.log(x);
     });
   }
 
@@ -36,5 +40,6 @@ export class personalInfoComponent implements OnInit {
         mobileNum: this.personalInfo.controls.mobileNum.value,
       },
     ];
+    this.router.navigate(['/Experience']);
   }
 }

@@ -26,7 +26,12 @@ import { CvComponent } from './CV/cv.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [CvComponent],
+  providers: [
+    CvComponent,
+    personalInfoComponent,
+    ExperienceComponent,
+    EducationComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -24,15 +24,37 @@
         <div class="all__firstCon__inputCon__mainCon__both">
           <div class="all__firstCon__inputCon__mainCon__both__nameCon">
             <p>სახელი</p>
-            <input
-              class="all__firstCon__inputCon__mainCon__both__nameCon__name"
-              type="text"
-              name="name"
-              placeholder="ანზორ"
-              formControlName="name"
-              required
-              value=""
-            />
+            <div class="vlaidOrInvalid">
+              <input
+                class="all__firstCon__inputCon__mainCon__both__nameCon__name"
+                [ngClass]="{ 'is-Valid': personalInfo.get('name')?.valid }"
+                type="text"
+                name="name"
+                placeholder="ანზორ"
+                formControlName="name"
+                required
+                value=""
+                minlength="2"
+                [ngClass]="{
+                  'is-invalid':
+                    personalInfo.get('name')?.invalid &&
+                    personalInfo.get('name')?.touched
+                }"
+              />
+              <img
+                *ngIf="personalInfo.get('name')?.valid"
+                class="valid"
+                src="/assets/images/Vectorvalid.png"
+              />
+              <img
+                *ngIf="
+                  personalInfo.get('name')?.invalid &&
+                  personalInfo.get('name')?.touched
+                "
+                class="invalid"
+                src="/assets/images/Vectorinvalid.png"
+              />
+            </div>
             <p
               class="all__firstCon__inputCon__mainCon__both__nameCon__required"
             >
@@ -41,15 +63,37 @@
           </div>
           <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
             <p>გვარი</p>
-            <input
-              class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
-              type="text"
-              name="lastname"
-              placeholder="მუმლაძე"
-              formControlName="lastName"
-              required
-              value=""
-            />
+            <div class="vlaidOrInvalid">
+              <input
+                class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
+                type="text"
+                name="lastname"
+                placeholder="მუმლაძე"
+                formControlName="lastName"
+                required
+                value=""
+                [ngClass]="{ 'is-Valid': personalInfo.get('lastName')?.valid }"
+                minlength="2"
+                [ngClass]="{
+                  'is-invalid':
+                    personalInfo.get('lastName')?.invalid &&
+                    personalInfo.get('lastName')?.touched
+                }"
+              />
+              <img
+                *ngIf="personalInfo.get('lastName')?.valid"
+                class="valid"
+                src="/assets/images/Vectorvalid.png"
+              />
+              <img
+                *ngIf="
+                  personalInfo.get('lastName')?.invalid &&
+                  personalInfo.get('lastName')?.touched
+                "
+                class="invalid"
+                src="/assets/images/Vectorinvalid.png"
+              />
+            </div>
             <p
               class="all__firstCon__inputCon__mainCon__both__nameCon__required"
             >
@@ -88,6 +132,12 @@
             placeholder="anzorr666@redberry.ge"
             formControlName="email"
             value=""
+            [ngClass]="{ 'is-Valid': personalInfo.get('email')?.valid }"
+            [ngClass]="{
+              'is-invalid':
+                personalInfo.get('email')?.invalid &&
+                personalInfo.get('email')?.touched
+            }"
           />
           <p class="all__firstCon__inputCon__mainCon__mail__required">
             უნდა მთავრდებოდეს @redberry.ge-ით
@@ -102,6 +152,16 @@
             required
             formControlName="mobileNum"
             value=""
+            [ngClass]="{
+              'is-Valid': personalInfo.get('mobileNum')?.valid
+            }"
+            maxlength="12"
+            minlength="12"
+            [ngClass]="{
+              'is-invalid':
+                personalInfo.get('mobileNum')?.invalid &&
+                personalInfo.get('mobileNum')?.touched
+            }"
           />
           <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
             უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
@@ -113,6 +173,7 @@
             class="all__firstCon__inputCon__mainCon__btnDiv__btn"
             (click)="personal()"
             value="შემდეგი"
+            [disabled]="personalInfo.invalid"
           />
         </div>
       </form>
