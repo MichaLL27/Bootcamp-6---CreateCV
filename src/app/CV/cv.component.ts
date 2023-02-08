@@ -8,11 +8,11 @@ import { personalInfoComponent } from '../PersonalInformation/personal.component
 })
 export class CvComponent implements OnInit {
   item: any;
-
   constructor(private info: personalInfoComponent) {}
 
   ngOnInit(): void {
-    this.item = this.info.personalInfo.value;
-    console.log(this.item);
+    this.info.personalInfo.valueChanges.subscribe((x) => {
+      this.item = x;
+    });
   }
 }

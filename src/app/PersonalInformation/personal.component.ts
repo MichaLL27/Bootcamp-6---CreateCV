@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: 'personal.component.html',
   styleUrls: ['./personal.component.scss'],
 })
 export class personalInfoComponent implements OnInit {
+  item: any;
   personalInfo = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[ა-ჰ].*'),
+    ]),
     lastName: new FormControl(''),
     image: new FormControl(''),
     description: new FormControl(''),
@@ -15,7 +19,11 @@ export class personalInfoComponent implements OnInit {
     mobileNum: new FormControl(''),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.personalInfo.valueChanges.subscribe((x) => {
+      this.item = x;
+    });
+  }
 
   personal() {
     const createPersonalInfo = [
@@ -28,9 +36,5 @@ export class personalInfoComponent implements OnInit {
         mobileNum: this.personalInfo.controls.mobileNum.value,
       },
     ];
-    console.log(createPersonalInfo);
-  }
-  change(): void {
-    console.log(this.personalInfo.controls.name.value);
   }
 }
