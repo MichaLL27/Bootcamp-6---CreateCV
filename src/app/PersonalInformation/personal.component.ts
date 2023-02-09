@@ -7,7 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./personal.component.scss'],
 })
 export class personalInfoComponent implements OnInit {
+  id = 1;
+
   constructor(private router: Router) {}
+
+  emailValidator(control: FormControl) {
+    const email = control.value;
+    if (email && !email.endsWith('@redberry.ge')) {
+      return { email: true };
+    }
+    return null;
+  }
+
   personalInfo = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -19,7 +30,11 @@ export class personalInfoComponent implements OnInit {
     ]),
     image: new FormControl('', [Validators.required]),
     description: new FormControl(''),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      this.emailValidator,
+      Validators.pattern('[a-zA-Z].*'),
+    ]),
     mobileNum: new FormControl('', [Validators.required]),
   });
 
@@ -34,12 +49,23 @@ export class personalInfoComponent implements OnInit {
       {
         name: this.personalInfo.controls.name.value,
         lastName: this.personalInfo.controls.lastName.value,
-        image: this.personalInfo.controls.image.value,
         description: this.personalInfo.controls.description.value,
         email: this.personalInfo.controls.email.value,
         mobileNum: this.personalInfo.controls.mobileNum.value,
       },
     ];
-    this.router.navigate(['/Experience']);
+    if (this.personalInfo.valid) {
+      this.router.navigate(['/Experience']);
+    } else {
+      this.validateAllFormFields(this.personalInfo);
+    }
+  }
+  private validateAllFormFields(formGroup: FormGroup) {
+    return Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      }
+    });
   }
 }

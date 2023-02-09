@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EducationComponent implements OnInit {
   item: any;
+  id = 3;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {

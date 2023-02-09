@@ -69,6 +69,14 @@
           &__nameCon {
             width: 50%;
             height: 100px;
+            &__txt {
+              color: black;
+              font-family: "HelveticaNeue";
+              font-style: normal;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 21px;
+            }
             &__name {
               margin-top: 10px;
               width: 90%;
@@ -85,6 +93,14 @@
           &__lastnameCon {
             width: 50%;
             height: 100px;
+            &__txt {
+              color: black;
+              font-family: "HelveticaNeue";
+              font-style: normal;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 21px;
+            }
             &__lastName {
               margin-top: 10px;
               width: 90%;
@@ -102,6 +118,14 @@
         &__description {
           display: flex;
           flex-direction: column;
+          &__txt {
+            color: black;
+            font-family: "HelveticaNeue";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+          }
           &__text {
             margin-top: 10px;
             padding-bottom: 100px;
@@ -121,6 +145,14 @@
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+          &__txt {
+            color: black;
+            font-family: "HelveticaNeue";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+          }
           &__mailTxt {
             border: 1px solid #bcbcbc;
             background: #ffffff;
@@ -145,6 +177,14 @@
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+          &__txt {
+            color: black;
+            font-family: "HelveticaNeue";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+          }
           &__mobileNum {
             border: 1px solid #bcbcbc;
             background: #ffffff;

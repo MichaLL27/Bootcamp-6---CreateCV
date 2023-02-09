@@ -13,7 +13,7 @@
           </div>
           <div class="all__firstCon__titleCon__title__title__itemNumber">
             <p class="all__firstCon__titleCon__title__title__itemNumber1">
-              2/3
+              {{ idPage + "/3" }}
             </p>
           </div>
         </div>
@@ -21,60 +21,84 @@
     </div>
     <div class="all__firstCon__inputCon">
       <form class="all__firstCon__inputCon__mainCon">
-        <div class="all__firstCon__inputCon__mainCon__mobileNumber">
-          <label for="position">თანამდებობა</label>
-          <input
-            class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
-            type="text"
-            required
-            placeholder="დეველოპერი, დიზაინერი, ა.შ"
-          />
-          <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
-            მინიმუმ 2 სიმბოლო
-          </p>
-        </div>
-        <div class="all__firstCon__inputCon__mainCon__mail">
-          <label for="employer">დამსაქმელები</label>
-          <input
-            class="all__firstCon__inputCon__mainCon__mail__mailTxt"
-            type="text"
-            required
-            placeholder="დამსაქმელები"
-          />
-          <p class="all__firstCon__inputCon__mainCon__mail__required">
-            მინიმუმ 2 სიმბოლო
-          </p>
-        </div>
-        <div class="all__firstCon__inputCon__mainCon__both">
-          <div class="all__firstCon__inputCon__mainCon__both__nameCon">
-            <p>დაწყების რიცხვი</p>
+        <div *ngFor="let item of formInputs">
+          <div class="all__firstCon__inputCon__mainCon__mobileNumber">
+            <label
+              for="position"
+              class="all__firstCon__inputCon__mainCon__mobileNumber__txt"
+              >{{ item.one }}</label
+            >
             <input
-              class="all__firstCon__inputCon__mainCon__both__nameCon__name"
-              type="date"
-              name="name"
+              class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
+              type="text"
               required
+              placeholder="დეველოპერი, დიზაინერი, ა.შ"
+            />
+            <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
+              მინიმუმ 2 სიმბოლო
+            </p>
+          </div>
+          <div class="all__firstCon__inputCon__mainCon__mail">
+            <label
+              for="employer"
+              class="all__firstCon__inputCon__mainCon__mail__txt"
+              >{{ item.two }}</label
+            >
+            <input
+              class="all__firstCon__inputCon__mainCon__mail__mailTxt"
+              type="text"
+              required
+              placeholder="დამსაქმელები"
+            />
+            <p class="all__firstCon__inputCon__mainCon__mail__required">
+              მინიმუმ 2 სიმბოლო
+            </p>
+          </div>
+          <div class="all__firstCon__inputCon__mainCon__both">
+            <div class="all__firstCon__inputCon__mainCon__both__nameCon">
+              <p class="all__firstCon__inputCon__mainCon__both__nameCon__txt">
+                {{ item.three }}
+              </p>
+              <input
+                class="all__firstCon__inputCon__mainCon__both__nameCon__name"
+                type="date"
+                name="name"
+                required
+              />
+            </div>
+            <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
+              <p
+                class="all__firstCon__inputCon__mainCon__both__lastnameCon__txt"
+              >
+                {{ item.four }}
+              </p>
+              <input
+                class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
+                type="date"
+                name="lastname"
+                required
+              />
+            </div>
+          </div>
+          <div class="all__firstCon__inputCon__mainCon__description">
+            <label
+              for="description"
+              class="all__firstCon__inputCon__mainCon__description__txt"
+              >{{ item.five }}</label
+            >
+            <input
+              class="all__firstCon__inputCon__mainCon__description__text"
+              type="text"
+              placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
             />
           </div>
-          <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
-            <p>დამთავრების რიცხვი</p>
-            <input
-              class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
-              type="date"
-              name="lastname"
-              required
-            />
-          </div>
         </div>
-        <div class="all__firstCon__inputCon__mainCon__description">
-          <label for="description">აღწერა</label>
-          <input
-            class="all__firstCon__inputCon__mainCon__description__text"
-            type="text"
-            placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
-          />
-        </div>
+
         <div class="all__firstCon__inputCon__mainCon__moreExperience">
-          <button class="all__firstCon__inputCon__mainCon__moreExperience__btn">
+          <button
+            class="all__firstCon__inputCon__mainCon__moreExperience__btn"
+            (click)="addNewForm($event)"
+          >
             მეტი გამოცდილების დამატება
           </button>
         </div>
