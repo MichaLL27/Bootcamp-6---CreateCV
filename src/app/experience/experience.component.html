@@ -20,8 +20,8 @@
       </div>
     </div>
     <div class="all__firstCon__inputCon">
-      <form class="all__firstCon__inputCon__mainCon">
-        <div *ngFor="let item of formInputs">
+      <form [formGroup]="experience" class="all__firstCon__inputCon__mainCon">
+        <div *ngFor="let item of formInputs" class="ngFor">
           <div class="all__firstCon__inputCon__mainCon__mobileNumber">
             <label
               for="position"
@@ -32,7 +32,22 @@
               class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
               type="text"
               required
+              formControlName="position"
               placeholder="დეველოპერი, დიზაინერი, ა.შ"
+              minlength="2"
+              [ngStyle]="{
+                'border-color':
+                  experience.get('position')?.invalid &&
+                  experience.get('position')?.dirty
+                    ? '#EF5050'
+                    : '#98E37E'
+              }"
+              [ngStyle]="{
+                'border-color':
+                  experience.get('position')?.value?.length == 0
+                    ? '#bcbcbc'
+                    : ''
+              }"
             />
             <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
               მინიმუმ 2 სიმბოლო
@@ -49,6 +64,21 @@
               type="text"
               required
               placeholder="დამსაქმელები"
+              formControlName="employer"
+              minlength="2"
+              [ngStyle]="{
+                'border-color':
+                  experience.get('employer')?.invalid &&
+                  experience.get('employer')?.dirty
+                    ? '#EF5050'
+                    : '#98E37E'
+              }"
+              [ngStyle]="{
+                'border-color':
+                  experience.get('employer')?.value?.length == 0
+                    ? '#bcbcbc'
+                    : ''
+              }"
             />
             <p class="all__firstCon__inputCon__mainCon__mail__required">
               მინიმუმ 2 სიმბოლო
@@ -64,6 +94,20 @@
                 type="date"
                 name="name"
                 required
+                formControlName="startDate"
+                [ngStyle]="{
+                  'border-color':
+                    experience.get('startDate')?.invalid &&
+                    experience.get('startDate')?.dirty
+                      ? '#EF5050'
+                      : '#98E37E'
+                }"
+                [ngStyle]="{
+                  'border-color':
+                    experience.get('startDate')?.value?.length == 0
+                      ? '#bcbcbc'
+                      : ''
+                }"
               />
             </div>
             <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
@@ -77,19 +121,49 @@
                 type="date"
                 name="lastname"
                 required
+                formControlName="endDate"
+                [ngStyle]="{
+                  'border-color':
+                    experience.get('endDate')?.invalid &&
+                    experience.get('endDate')?.dirty
+                      ? '#EF5050'
+                      : '#98E37E'
+                }"
+                [ngStyle]="{
+                  'border-color':
+                    experience.get('endDate')?.value?.length == 0
+                      ? '#bcbcbc'
+                      : ''
+                }"
               />
             </div>
           </div>
           <div class="all__firstCon__inputCon__mainCon__description">
-            <label
+            <p
               for="description"
               class="all__firstCon__inputCon__mainCon__description__txt"
-              >{{ item.five }}</label
             >
+              {{ item.five }}
+            </p>
             <input
               class="all__firstCon__inputCon__mainCon__description__text"
               type="text"
               placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+              formControlName="description"
+              [ngStyle]="{
+                'border-color':
+                  experience.get('description')?.invalid &&
+                  experience.get('description')?.dirty
+                    ? '#EF5050'
+                    : '#98E37E'
+              }"
+              [ngStyle]="{
+                'border-color':
+                  experience.get('description')?.value?.length == 0
+                    ? '#bcbcbc'
+                    : ''
+              }"
+              minlength="1"
             />
           </div>
         </div>
@@ -111,7 +185,7 @@
           </button>
           <button
             class="all__firstCon__inputCon__mainCon__btnDiv__btn"
-            [routerLink]="['/Education']"
+            (click)="nextSection()"
           >
             შემდეგი
           </button>

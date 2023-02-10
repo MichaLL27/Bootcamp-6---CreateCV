@@ -206,7 +206,6 @@
         }
         &__moreExperience {
           margin-top: 40px;
-          border-top: 1px solid #c1c1c1;
           &__btn {
             display: flex;
             flex-direction: row;
@@ -225,7 +224,7 @@
           }
         }
         &__btnDiv {
-          margin-top: 25px;
+          margin-top: 50px;
           width: 100%;
           display: flex;
           justify-content: space-between;
@@ -252,4 +251,9 @@
       }
     }
   }
+}
+
+.ngFor {
+  padding-bottom: 50px;
+  border-bottom: 1px solid #c1c1c1;
 }

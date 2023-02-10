@@ -30,9 +30,17 @@
               <input
                 class="all__firstCon__inputCon__mainCon__both__nameCon__name"
                 [ngStyle]="{
-                  'border-color': personalInfo.get('name')?.valid
-                    ? '#98E37E'
-                    : ''
+                  'border-color':
+                    personalInfo.get('name')?.invalid &&
+                    personalInfo.get('name')?.dirty
+                      ? '#EF5050'
+                      : '#98E37E'
+                }"
+                [ngStyle]="{
+                  'border-color':
+                    personalInfo.get('name')?.value?.length == 0
+                      ? '#bcbcbc'
+                      : ''
                 }"
                 type="text"
                 name="name"
@@ -41,11 +49,6 @@
                 required
                 value=""
                 minlength="2"
-                [ngClass]="{
-                  'is-invalid':
-                    personalInfo.get('name')?.invalid &&
-                    personalInfo.get('name')?.dirty
-                }"
               />
               <img
                 *ngIf="personalInfo.get('name')?.valid"
@@ -55,7 +58,8 @@
               <img
                 *ngIf="
                   personalInfo.get('name')?.invalid &&
-                  personalInfo.get('name')?.dirty
+                  personalInfo.get('name')?.dirty &&
+                  personalInfo.get('name')?.value?.length !== 0
                 "
                 class="invalid"
                 src="/assets/images/Vectorinvalid.png"
@@ -81,16 +85,19 @@
                 required
                 value=""
                 [ngStyle]="{
-                  'border-color': personalInfo.get('lastName')?.valid
-                    ? '#98E37E'
-                    : ''
-                }"
-                minlength="2"
-                [ngClass]="{
-                  'is-invalid':
+                  'border-color':
                     personalInfo.get('lastName')?.invalid &&
                     personalInfo.get('lastName')?.dirty
+                      ? '#EF5050'
+                      : '#98E37E'
                 }"
+                [ngStyle]="{
+                  'border-color':
+                    personalInfo.get('lastName')?.value?.length == 0
+                      ? '#bcbcbc'
+                      : ''
+                }"
+                minlength="2"
               />
               <img
                 *ngIf="personalInfo.get('lastName')?.valid"
@@ -100,7 +107,8 @@
               <img
                 *ngIf="
                   personalInfo.get('lastName')?.invalid &&
-                  personalInfo.get('lastName')?.dirty
+                  personalInfo.get('lastName')?.dirty &&
+                  personalInfo.get('lastName')?.value?.length !== 0
                 "
                 class="invalid"
                 src="/assets/images/Vectorinvalid.png"
@@ -138,6 +146,16 @@
             placeholder="ზოგადი ინფო შენ შესახებ"
             formControlName="description"
             value=""
+            [ngStyle]="{
+              'border-color':
+                personalInfo.get('description')?.value !== null ? '#98E37E' : ''
+            }"
+            [ngStyle]="{
+              'border-color':
+                personalInfo.get('description')?.value?.length == 0
+                  ? '#bcbcbc'
+                  : ''
+            }"
           />
         </div>
         <div class="all__firstCon__inputCon__mainCon__mail">
@@ -152,12 +170,15 @@
             formControlName="email"
             value=""
             [ngStyle]="{
-              'border-color': personalInfo.get('email')?.valid ? '#98E37E' : ''
-            }"
-            [ngClass]="{
-              'is-invalid':
+              'border-color':
                 personalInfo.get('email')?.invalid &&
                 personalInfo.get('email')?.dirty
+                  ? '#EF5050'
+                  : '#98E37E'
+            }"
+            [ngStyle]="{
+              'border-color':
+                personalInfo.get('email')?.value?.length == 0 ? '#bcbcbc' : ''
             }"
           />
           <p class="all__firstCon__inputCon__mainCon__mail__required">

@@ -21,52 +21,63 @@
     </div>
     <div class="all__firstCon__inputCon">
       <form class="all__firstCon__inputCon__mainCon">
-        <div class="all__firstCon__inputCon__mainCon__mobileNumber">
-          <label for="school">სასწავლებელი</label>
-          <input
-            class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
-            type="text"
-            required
-            placeholder="სასწავლებელი"
-          />
-          <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
-            მინიმუმ 2 სიმბოლო
-          </p>
-        </div>
-        <div class="all__firstCon__inputCon__mainCon__both">
-          <div class="all__firstCon__inputCon__mainCon__both__nameCon">
-            <label for="quality">ხარისხი</label>
-            <select
-              name="cars"
-              id="cars"
-              class="all__firstCon__inputCon__mainCon__both__nameCon__selected"
-            >
-              <option
-                class="all__firstCon__inputCon__mainCon__both__nameCon__selected__items"
-                *ngFor="let items of item"
-                [value]="items?.title"
-              >
-                {{ items?.title }}
-              </option>
-            </select>
-          </div>
-          <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
-            <p>დამთავრების რიცხვი</p>
+        <div class="ngFor" *ngFor="let item of formInputs">
+          <div class="all__firstCon__inputCon__mainCon__mobileNumber">
+            <label for="school">სასწავლებელი</label>
             <input
-              class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
-              type="date"
-              name="lastname"
+              class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
+              type="text"
               required
+              placeholder="სასწავლებელი"
+            />
+            <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
+              მინიმუმ 2 სიმბოლო
+            </p>
+          </div>
+          <div class="all__firstCon__inputCon__mainCon__both">
+            <div class="all__firstCon__inputCon__mainCon__both__nameCon">
+              <label for="quality">სასწავ</label>
+              <select
+                name="cars"
+                id="cars"
+                class="all__firstCon__inputCon__mainCon__both__nameCon__selected"
+              >
+                <option
+                  class="all__firstCon__inputCon__mainCon__both__nameCon__selected__items"
+                  *ngFor="let API of itemAPI"
+                  [value]="API?.title"
+                >
+                  {{ API?.title }}
+                </option>
+              </select>
+            </div>
+            <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
+              <p>დამთავრების რიცხვი</p>
+              <input
+                class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
+                type="date"
+                name="lastname"
+                required
+              />
+            </div>
+          </div>
+          <div class="all__firstCon__inputCon__mainCon__description">
+            <label for="description">აღწერა</label>
+            <input
+              class="all__firstCon__inputCon__mainCon__description__text"
+              type="text"
+              placeholder="განათლების აღწერა"
             />
           </div>
         </div>
-        <div class="all__firstCon__inputCon__mainCon__description">
-          <label for="description">აღწერა</label>
-          <input
-            class="all__firstCon__inputCon__mainCon__description__text"
-            type="text"
-            placeholder="განათლების აღწერა"
-          />
+
+        <div class="all__firstCon__inputCon__mainCon__moreExperience">
+          <button
+            class="all__firstCon__inputCon__mainCon__moreExperience__btn"
+            (click)="addNewForm($event)"
+          >
+            მეტი გამოცდილების დამატება
+          </button>
         </div>
         <div class="all__firstCon__inputCon__mainCon__btnDiv">
           <button
