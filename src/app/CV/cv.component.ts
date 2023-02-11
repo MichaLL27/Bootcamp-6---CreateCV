@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { personalInfoComponent } from '../PersonalInformation/personal.component';
 
 @Component({
@@ -8,11 +8,12 @@ import { personalInfoComponent } from '../PersonalInformation/personal.component
 })
 export class CvComponent implements OnInit {
   item: any;
-  constructor(private info: personalInfoComponent) {}
+  constructor(private person: personalInfoComponent) {}
+  @Input() personalInformation: any;
+  @Input() experienceInfo: any;
+  @Input() educationInfo: any;
 
   ngOnInit(): void {
-    this.info.personalInfo.valueChanges.subscribe((x) => {
-      this.item = x;
-    });
+    console.log(this.personalInformation + 'idc');
   }
 }

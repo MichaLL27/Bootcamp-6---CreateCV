@@ -48,9 +48,9 @@ export class ExperienceComponent implements OnInit {
   }
   nextSection() {
     const experienceInfo = [
-      {
-        position: this.experience.controls.position.value,
-      },
+      // {
+      //   position: this.experience.controls.position.value,
+      // },
     ];
     if (this.experience.valid) {
       this.router.navigate(['/Education']);

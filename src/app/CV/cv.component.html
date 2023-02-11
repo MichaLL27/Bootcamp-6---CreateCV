@@ -4,17 +4,19 @@
       <div class="all__allCon__mainCon__nameCon">
         <div class="all__allCon__mainCon__nameCon__null">
           <p class="all__allCon__mainCon__nameCon__null__nameLastName">
-            პავლე მგელაძე
+            {{
+              personalInformation?.name + " " + personalInformation?.lastName
+            }}
           </p>
         </div>
         <div>
           <div class="all__allCon__mainCon__nameCon__emailCon">
             <img src="../../assets/images/Vector@.png" />
-            <p>anzorr666@redberry.ge</p>
+            <p>{{ personalInformation?.email }}</p>
           </div>
           <div class="all__allCon__mainCon__nameCon__numCon">
             <img src="../../assets/images/Vectornumber.png" />
-            <p>+995 597 63 45 16</p>
+            <p>{{ "+" + personalInformation?.mobileNum }}</p>
           </div>
         </div>
         <div class="all__allCon__mainCon__nameCon__myInfoCon">
@@ -22,11 +24,7 @@
             ჩემს შესახებ
           </p>
           <div class="all__allCon__mainCon__nameCon__myInfoCon__text2">
-            <p>
-              ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები
-              გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ, მთავაია დრო
-              შეუსაბამოპ მდგომაროების გამოჯანრთლეების სტრუქტურულ თვისებებს
-            </p>
+            <p>{{ personalInformation?.description }}</p>
           </div>
         </div>
       </div>
@@ -42,17 +40,14 @@
       <div class="all__allCon__experienceCon__position">
         <div class="all__allCon__experienceCon__position__texts">
           <p class="all__allCon__experienceCon__position__texts__texts1">
-            React Native Developer, Microsoft
+            {{ experienceInfo?.position + " " + experienceInfo?.employer }}
           </p>
           <p class="all__allCon__experienceCon__position__texts__texts2">
-            2020-09-23 - 2020-09-23
+            {{ experienceInfo?.startDate + "  " + experienceInfo?.endDate }}
           </p>
         </div>
         <p class="all__allCon__experienceCon__position__description">
-          Experienced Javascript Native Developer with 5 years in the industry.
-          proficient withreact. Used problem-solving aptitude to encahge
-          application performance by 14%.created data visualisation tools and
-          integrated designs.
+          {{ experienceInfo?.description }}
         </p>
       </div>
     </div>
@@ -61,17 +56,14 @@
       <div class="all__allCon__educationCon__position">
         <div class="all__allCon__educationCon__position__texts">
           <p class="all__allCon__educationCon__position__texts__texts1">
-            წმ. ანდრიას საპატრიარქოს სასწავლებელი, სტუდენტი
+            {{ educationInfo?.school + " " + educationInfo?.quality }}
           </p>
           <p class="all__allCon__educationCon__position__texts__texts2">
-            2020-09-09
+            {{ educationInfo?.endDate }}
           </p>
         </div>
         <p class="all__allCon__educationCon__position__description">
-          ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი.
-          კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე.
-          მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და
-          ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?
+          {{ educationInfo?.description }}
         </p>
       </div>
     </div>

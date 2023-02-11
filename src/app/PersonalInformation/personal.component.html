@@ -130,6 +130,7 @@
           <button
             class="all__firstCon__inputCon__mainCon__uploadPhoto__btn"
             formControlName="image"
+            (click)="uploadPhoto()"
           >
             ატვირთვა
           </button>
@@ -263,6 +264,6 @@
     </div>
   </div>
   <div class="all__secondCon">
-    <cv-component></cv-component>
+    <cv-component [personalInformation]="personalInfo.value"></cv-component>
   </div>
 </div>

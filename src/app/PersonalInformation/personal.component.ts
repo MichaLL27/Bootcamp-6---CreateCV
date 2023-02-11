@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   templateUrl: 'personal.component.html',
@@ -9,6 +11,8 @@ import { Router } from '@angular/router';
 export class personalInfoComponent implements OnInit {
   id = 1;
 
+  inputPersonal: any;
+  createPersonalInfo: any;
   constructor(private router: Router) {}
 
   emailValidator(control: FormControl) {
@@ -28,30 +32,54 @@ export class personalInfoComponent implements OnInit {
       Validators.required,
       Validators.pattern('[ა-ჰ].*'),
     ]),
-    image: new FormControl('', [Validators.required]),
+    // image: new FormControl('', [Validators.required]),
     description: new FormControl(''),
     email: new FormControl('', [Validators.required, this.emailValidator]),
     mobileNum: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {
-    this.personalInfo.valueChanges.subscribe((x) => {
-      console.log(x);
+    const formValue = localStorage.getItem('formData');
+    if (formValue) {
+      this.personalInfo.setValue(JSON.parse(formValue));
+    }
+    this.personalInfo.valueChanges.pipe(debounceTime(10)).subscribe((val) => {
+      localStorage.setItem('formData', JSON.stringify(val));
     });
+    console.log(this.personalInfo);
+  }
+
+  uploadPhoto() {}
+
+  private savePersonalInfo() {
+    localStorage.setItem(
+      'personalInfo',
+      JSON.stringify(this.createPersonalInfo)
+    );
+  }
+
+  getPersonalInfo() {
+    const persInfo = localStorage.getItem('personalInfo');
+    if (persInfo) {
+      return (this.personalInfo = JSON.parse(persInfo));
+    } else {
+      return this.personalInfo;
+    }
   }
 
   personal() {
-    const createPersonalInfo = [
-      {
-        name: this.personalInfo.controls.name.value,
-        lastName: this.personalInfo.controls.lastName.value,
-        description: this.personalInfo.controls.description.value,
-        email: this.personalInfo.controls.email.value,
-        mobileNum: this.personalInfo.controls.mobileNum.value,
-      },
-    ];
+    this.createPersonalInfo = {
+      name: this.personalInfo.controls.name.value,
+      lastName: this.personalInfo.controls.lastName.value,
+      description: this.personalInfo.controls.description.value,
+      email: this.personalInfo.controls.email.value,
+      mobileNum: this.personalInfo.controls.mobileNum.value,
+    };
     if (this.personalInfo.valid) {
       this.router.navigate(['/Experience']);
+      // localStorage.clear();
+      this.savePersonalInfo();
+      this.getPersonalInfo();
     } else {
       this.validateAllFormFields(this.personalInfo);
     }
