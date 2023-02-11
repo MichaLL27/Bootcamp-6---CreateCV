@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'education.component.html',
@@ -9,8 +11,29 @@ import { DataService } from '../data.service';
 export class EducationComponent implements OnInit {
   itemAPI: any;
   id = 3;
-  constructor(private http: HttpClient, private dataService: DataService) {}
+  constructor(
+    private http: HttpClient,
+    private dataService: DataService,
+    private router: Router
+  ) {}
 
+  descriptionValidator(control: FormControl) {
+    const description = control.value;
+    if (description && description.length === 0) {
+      return { email: true };
+    }
+    return null;
+  }
+
+  education = new FormGroup({
+    school: new FormControl('', [Validators.required]),
+    quality: new FormControl('', [Validators.required]),
+    endDate: new FormControl('', [Validators.required]),
+    description: new FormControl('', [
+      Validators.required,
+      this.descriptionValidator,
+    ]),
+  });
   formInputs = [
     {
       id: 1,
@@ -30,13 +53,6 @@ export class EducationComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // this.http
-    //   .get('https://resume.redberryinternship.ge/api/degrees')
-    //   .subscribe((data) => {
-    //     this.item = data;
-    //     this.formInputs.push({ ...this.item });
-    //     console.log(this.formInputs);
-    //   });
     console.log(
       this.dataService.getData().subscribe((data) => {
         this.itemAPI = data;
@@ -51,5 +67,21 @@ export class EducationComponent implements OnInit {
       return z;
     });
     console.log(this.formInputs);
+  }
+
+  end() {
+    if (this.education.valid) {
+      this.router.navigate(['/Education']);
+    } else {
+      this.validateAllFormFields(this.education);
+    }
+  }
+  private validateAllFormFields(formGroup: FormGroup) {
+    return Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      }
+    });
   }
 }

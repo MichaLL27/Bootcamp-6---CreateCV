@@ -30,11 +30,7 @@ export class personalInfoComponent implements OnInit {
     ]),
     image: new FormControl('', [Validators.required]),
     description: new FormControl(''),
-    email: new FormControl('', [
-      Validators.required,
-      this.emailValidator,
-      Validators.pattern('[a-zA-Z].*'),
-    ]),
+    email: new FormControl('', [Validators.required, this.emailValidator]),
     mobileNum: new FormControl('', [Validators.required]),
   });
 

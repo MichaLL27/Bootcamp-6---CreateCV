@@ -209,6 +209,7 @@
             border-radius: 4px;
             height: 30px;
             outline: none;
+            width: 100%;
           }
           &__mailTxt:focus {
             border: 2px solid #bcbcbc;
@@ -241,6 +242,7 @@
             border-radius: 4px;
             height: 30px;
             outline: none;
+            width: 100%;
           }
           &__mobileNum:focus {
             border: 2px solid #bcbcbc;
@@ -286,26 +288,16 @@
 .vlaidOrInvalid {
   display: flex;
   align-items: center;
+  position: relative;
+  width: 100%;
 }
 .valid {
-  width: 20px;
-  height: 20px;
-  position: relative;
-  right: 30px;
+  position: absolute;
+  right: 10px;
 }
 .invalid {
-  width: 20px;
-  height: 20px;
-  position: relative;
-  left: 10px;
-}
-
-.is-Valid {
-  border-color: rgba(152, 227, 126, 1) !important;
-}
-
-.is-invalid {
-  border-color: #ef5050;
+  position: absolute;
+  right: -30px;
 }
 
 // hide input arrow

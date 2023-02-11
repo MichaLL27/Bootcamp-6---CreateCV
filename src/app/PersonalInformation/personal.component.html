@@ -162,25 +162,41 @@
           <label class="all__firstCon__inputCon__mainCon__mail__txt" for="mail"
             >ელ.ფოსტა</label
           >
-          <input
-            class="all__firstCon__inputCon__mainCon__mail__mailTxt"
-            type="email"
-            required
-            placeholder="anzorr666@redberry.ge"
-            formControlName="email"
-            value=""
-            [ngStyle]="{
-              'border-color':
+          <div class="vlaidOrInvalid">
+            <input
+              class="all__firstCon__inputCon__mainCon__mail__mailTxt"
+              type="email"
+              required
+              placeholder="anzorr666@redberry.ge"
+              formControlName="email"
+              value=""
+              [ngStyle]="{
+                'border-color':
+                  personalInfo.get('email')?.invalid &&
+                  personalInfo.get('email')?.dirty
+                    ? '#EF5050'
+                    : '#98E37E'
+              }"
+              [ngStyle]="{
+                'border-color':
+                  personalInfo.get('email')?.value?.length == 0 ? '#bcbcbc' : ''
+              }"
+            />
+            <img
+              *ngIf="personalInfo.get('email')?.valid"
+              class="valid"
+              src="/assets/images/Vectorvalid.png"
+            />
+            <img
+              *ngIf="
                 personalInfo.get('email')?.invalid &&
-                personalInfo.get('email')?.dirty
-                  ? '#EF5050'
-                  : '#98E37E'
-            }"
-            [ngStyle]="{
-              'border-color':
-                personalInfo.get('email')?.value?.length == 0 ? '#bcbcbc' : ''
-            }"
-          />
+                personalInfo.get('email')?.dirty &&
+                personalInfo.get('email')?.value?.length !== 0
+              "
+              class="invalid"
+              src="/assets/images/Vectorinvalid.png"
+            />
+          </div>
           <p class="all__firstCon__inputCon__mainCon__mail__required">
             უნდა მთავრდებოდეს @redberry.ge-ით
           </p>
@@ -191,26 +207,46 @@
             class="all__firstCon__inputCon__mainCon__mobileNumber__txt"
             >მობილურის ნომერი</label
           >
-          <input
-            class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
-            type="number"
-            placeholder="+995 551 12 34 56"
-            required
-            formControlName="mobileNum"
-            value=""
-            [ngStyle]="{
-              'border-color': personalInfo.get('mobileNum')?.valid
-                ? '#98E37E'
-                : ''
-            }"
-            maxlength="12"
-            minlength="12"
-            [ngClass]="{
-              'is-invalid':
+          <div class="vlaidOrInvalid">
+            <input
+              class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
+              type="number"
+              placeholder="+995 551 12 34 56"
+              required
+              formControlName="mobileNum"
+              value=""
+              [ngStyle]="{
+                'border-color':
+                  personalInfo.get('mobileNum')?.invalid &&
+                  personalInfo.get('mobileNum')?.dirty &&
+                  personalInfo.get('mobileNum')?.touched
+                    ? '#EF5050'
+                    : '#98E37E'
+              }"
+              [ngStyle]="{
+                'border-color':
+                  personalInfo.get('mobileNum')?.value?.length == 0
+                    ? '#bcbcbc'
+                    : ''
+              }"
+              maxlength="13"
+              minlength="13"
+            />
+            <img
+              *ngIf="personalInfo.get('mobileNum')?.valid"
+              class="valid"
+              src="/assets/images/Vectorvalid.png"
+            />
+            <img
+              *ngIf="
                 personalInfo.get('mobileNum')?.invalid &&
-                personalInfo.get('mobileNum')?.dirty
-            }"
-          />
+                personalInfo.get('mobileNum')?.dirty &&
+                personalInfo.get('mobileNum')?.value?.length !== 0
+              "
+              class="invalid"
+              src="/assets/images/Vectorinvalid.png"
+            />
+          </div>
           <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
             უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
           </p>
