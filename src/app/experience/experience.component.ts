@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   templateUrl: 'experience.component.html',
@@ -10,48 +10,54 @@ export class ExperienceComponent implements OnInit {
   constructor(private router: Router) {}
 
   experience = new FormGroup({
-    position: new FormControl('', [Validators.required]),
-    employer: new FormControl('', [Validators.required]),
-    startDate: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    inputs: new FormArray([
+      new FormGroup({
+        position: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^[ა-ჰ]{2,}$/),
+        ]),
+        employer: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^[ა-ჰ]{2,}$/),
+        ]),
+        startDate: new FormControl('', [Validators.required]),
+        endDate: new FormControl('', [Validators.required]),
+        description: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^[ა-ჰ]{2,}$/),
+        ]),
+      }),
+    ]),
   });
 
   ngOnInit(): void {}
 
-  formInputs = [
-    {
-      id: 1,
-      one: 'თანამდებობა',
-      two: 'დამსაქმებელი',
-      three: 'დაწების რიცხვი',
-      four: 'დამთავრების რიცხვი',
-      five: 'აღწერა',
-    },
-  ];
-
-  new = {
-    id: 2,
-    one: 'თანამდებობა',
-    two: 'დამსაქმებელი',
-    three: 'დაწების რიცხვი',
-    four: 'დამთავრების რიცხვი',
-    five: 'აღწერა',
-  };
+  get inputs() {
+    return this.experience.get('inputs') as FormArray;
+  }
   addNewForm(event: any) {
     event.preventDefault();
-    this.formInputs.push({ ...this.new });
-    this.formInputs = this.formInputs.map((z, i) => {
-      z.id = 1 + i;
-      return z;
-    });
+    this.inputs.push(
+      new FormGroup({
+        position: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^[ა-ჰ]{2,}$/),
+        ]),
+        employer: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^[ა-ჰ]{2,}$/),
+        ]),
+        startDate: new FormControl('', [Validators.required]),
+        endDate: new FormControl('', [Validators.required]),
+        description: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^[ა-ჰ]{2,}$/),
+        ]),
+      })
+    );
   }
   nextSection() {
-    const experienceInfo = [
-      // {
-      //   position: this.experience.controls.position.value,
-      // },
-    ];
+    console.log(this.inputs.value);
     if (this.experience.valid) {
       this.router.navigate(['/Education']);
     } else {

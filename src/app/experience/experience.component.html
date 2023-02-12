@@ -22,152 +22,152 @@
     <div class="all__firstCon__inputCon">
       <form [formGroup]="experience" class="all__firstCon__inputCon__mainCon">
         <div formArrayName="inputs">
-          <div *ngFor="let item of formInputs; index as i" class="ngFor">
-            <div class="all__firstCon__inputCon__mainCon__mobileNumber">
-              <label
-                for="position"
-                class="all__firstCon__inputCon__mainCon__mobileNumber__txt"
-                >{{ item.one }}</label
-              >
-              <input
-                class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
-                type="text"
-                required
-                formControlName="position"
-                placeholder="დეველოპერი, დიზაინერი, ა.შ"
-                minlength="2"
-                [ngStyle]="{
-                  'border-color':
-                    experience.get('position')?.invalid &&
-                    experience.get('position')?.dirty
-                      ? '#EF5050'
-                      : '#98E37E'
-                }"
-                [ngStyle]="{
-                  'border-color':
-                    experience.get('position')?.value?.length == 0
-                      ? '#bcbcbc'
-                      : ''
-                }"
-              />
-              <p
-                class="all__firstCon__inputCon__mainCon__mobileNumber__required"
-              >
-                მინიმუმ 2 სიმბოლო
-              </p>
-            </div>
-            <div class="all__firstCon__inputCon__mainCon__mail">
-              <label
-                for="employer"
-                class="all__firstCon__inputCon__mainCon__mail__txt"
-                >{{ item.two }}</label
-              >
-              <input
-                class="all__firstCon__inputCon__mainCon__mail__mailTxt"
-                type="text"
-                required
-                placeholder="დამსაქმელები"
-                formControlName="employer"
-                minlength="2"
-                [ngStyle]="{
-                  'border-color':
-                    experience.get('employer')?.invalid &&
-                    experience.get('employer')?.dirty
-                      ? '#EF5050'
-                      : '#98E37E'
-                }"
-                [ngStyle]="{
-                  'border-color':
-                    experience.get('employer')?.value?.length == 0
-                      ? '#bcbcbc'
-                      : ''
-                }"
-              />
-              <p class="all__firstCon__inputCon__mainCon__mail__required">
-                მინიმუმ 2 სიმბოლო
-              </p>
-            </div>
-            <div class="all__firstCon__inputCon__mainCon__both">
-              <div class="all__firstCon__inputCon__mainCon__both__nameCon">
-                <p class="all__firstCon__inputCon__mainCon__both__nameCon__txt">
-                  {{ item.three }}
-                </p>
-                <input
-                  class="all__firstCon__inputCon__mainCon__both__nameCon__name"
-                  type="date"
-                  name="name"
-                  required
-                  formControlName="startDate"
-                  [ngStyle]="{
-                    'border-color':
-                      experience.get('startDate')?.invalid &&
-                      experience.get('startDate')?.dirty
-                        ? '#EF5050'
-                        : '#98E37E'
-                  }"
-                  [ngStyle]="{
-                    'border-color':
-                      experience.get('startDate')?.value?.length == 0
-                        ? '#bcbcbc'
-                        : ''
-                  }"
-                />
-              </div>
-              <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
-                <p
-                  class="all__firstCon__inputCon__mainCon__both__lastnameCon__txt"
+          <div *ngFor="let item of inputs.controls; index as i" class="ngFor">
+            <div [formGroupName]="i">
+              <div class="all__firstCon__inputCon__mainCon__mobileNumber">
+                <label
+                  for="position"
+                  class="all__firstCon__inputCon__mainCon__mobileNumber__txt"
+                  >თანამდებობა</label
                 >
-                  {{ item.four }}
-                </p>
                 <input
-                  class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
-                  type="date"
-                  name="lastname"
+                  class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
+                  type="text"
                   required
-                  formControlName="endDate"
+                  formControlName="position"
+                  placeholder="დეველოპერი, დიზაინერი, ა.შ"
+                  minlength="2"
                   [ngStyle]="{
                     'border-color':
-                      experience.get('endDate')?.invalid &&
-                      experience.get('endDate')?.dirty
+                      item.get('position')?.invalid &&
+                      item.get('position')?.dirty
                         ? '#EF5050'
                         : '#98E37E'
                   }"
                   [ngStyle]="{
                     'border-color':
-                      experience.get('endDate')?.value?.length == 0
+                      item.get('position')?.value?.length == 0 ? '#bcbcbc' : ''
+                  }"
+                />
+                <p
+                  class="all__firstCon__inputCon__mainCon__mobileNumber__required"
+                >
+                  მინიმუმ 2 სიმბოლო
+                </p>
+              </div>
+              <div class="all__firstCon__inputCon__mainCon__mail">
+                <label
+                  for="employer"
+                  class="all__firstCon__inputCon__mainCon__mail__txt"
+                  >დამსაქმებელი</label
+                >
+                <input
+                  class="all__firstCon__inputCon__mainCon__mail__mailTxt"
+                  type="text"
+                  required
+                  placeholder="დამსაქმელები"
+                  formControlName="employer"
+                  minlength="2"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('employer')?.invalid &&
+                      item.get('employer')?.dirty
+                        ? '#EF5050'
+                        : '#98E37E'
+                  }"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('employer')?.value?.length == 0 ? '#bcbcbc' : ''
+                  }"
+                />
+                <p class="all__firstCon__inputCon__mainCon__mail__required">
+                  მინიმუმ 2 სიმბოლო
+                </p>
+              </div>
+              <div class="all__firstCon__inputCon__mainCon__both">
+                <div class="all__firstCon__inputCon__mainCon__both__nameCon">
+                  <p
+                    class="all__firstCon__inputCon__mainCon__both__nameCon__txt"
+                  >
+                    დაწყების თარიღი
+                  </p>
+                  <input
+                    class="all__firstCon__inputCon__mainCon__both__nameCon__name"
+                    type="date"
+                    name="name"
+                    required
+                    formControlName="startDate"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('startDate')?.invalid &&
+                        item.get('startDate')?.dirty
+                          ? '#EF5050'
+                          : '#98E37E'
+                    }"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('startDate')?.value?.length == 0
+                          ? '#bcbcbc'
+                          : ''
+                    }"
+                  />
+                </div>
+                <div
+                  class="all__firstCon__inputCon__mainCon__both__lastnameCon"
+                >
+                  <p
+                    class="all__firstCon__inputCon__mainCon__both__lastnameCon__txt"
+                  >
+                    დამთავრების თარიღი
+                  </p>
+                  <input
+                    class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
+                    type="date"
+                    name="lastname"
+                    required
+                    formControlName="endDate"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('endDate')?.invalid &&
+                        item.get('endDate')?.dirty
+                          ? '#EF5050'
+                          : '#98E37E'
+                    }"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('endDate')?.value?.length == 0 ? '#bcbcbc' : ''
+                    }"
+                  />
+                </div>
+              </div>
+              <div class="all__firstCon__inputCon__mainCon__description">
+                <p
+                  for="description"
+                  class="all__firstCon__inputCon__mainCon__description__txt"
+                >
+                  აღწერა
+                </p>
+                <input
+                  class="all__firstCon__inputCon__mainCon__description__text"
+                  type="text"
+                  placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+                  formControlName="description"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('description')?.invalid &&
+                      item.get('description')?.dirty
+                        ? '#EF5050'
+                        : '#98E37E'
+                  }"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('description')?.value?.length == 0
                         ? '#bcbcbc'
                         : ''
                   }"
+                  minlength="1"
                 />
               </div>
-            </div>
-            <div class="all__firstCon__inputCon__mainCon__description">
-              <p
-                for="description"
-                class="all__firstCon__inputCon__mainCon__description__txt"
-              >
-                {{ item.five }}
-              </p>
-              <input
-                class="all__firstCon__inputCon__mainCon__description__text"
-                type="text"
-                placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
-                formControlName="description"
-                [ngStyle]="{
-                  'border-color':
-                    experience.get('description')?.invalid &&
-                    experience.get('description')?.dirty
-                      ? '#EF5050'
-                      : '#98E37E'
-                }"
-                [ngStyle]="{
-                  'border-color':
-                    experience.get('description')?.value?.length == 0
-                      ? '#bcbcbc'
-                      : ''
-                }"
-                minlength="1"
-              />
             </div>
           </div>
         </div>
@@ -198,6 +198,6 @@
     </div>
   </div>
   <div class="all__secondCon">
-    <cv-component [experienceInfo]="experience.value"></cv-component>
+    <cv-component [experienceInfo]="inputs.value"></cv-component>
   </div>
 </div>

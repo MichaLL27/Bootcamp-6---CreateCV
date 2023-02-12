@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -52,14 +51,11 @@ export class personalInfoComponent implements OnInit {
   uploadPhoto() {}
 
   private savePersonalInfo() {
-    localStorage.setItem(
-      'personalInfo',
-      JSON.stringify(this.createPersonalInfo)
-    );
+    localStorage.setItem('formData', JSON.stringify(this.createPersonalInfo));
   }
 
   getPersonalInfo() {
-    const persInfo = localStorage.getItem('personalInfo');
+    const persInfo = localStorage.getItem('formData');
     if (persInfo) {
       return (this.personalInfo = JSON.parse(persInfo));
     } else {
@@ -77,7 +73,7 @@ export class personalInfoComponent implements OnInit {
     };
     if (this.personalInfo.valid) {
       this.router.navigate(['/Experience']);
-      // localStorage.clear();
+      localStorage.clear();
       this.savePersonalInfo();
       this.getPersonalInfo();
     } else {

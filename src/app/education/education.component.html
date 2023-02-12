@@ -21,120 +21,122 @@
     </div>
     <div class="all__firstCon__inputCon">
       <form [formGroup]="education" class="all__firstCon__inputCon__mainCon">
-        <div class="ngFor" *ngFor="let item of formInputs">
-          <div class="all__firstCon__inputCon__mainCon__mobileNumber">
-            <label for="school">{{ item.one }}</label>
-            <input
-              class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
-              type="text"
-              required
-              placeholder="სასწავლებელი"
-              formControlName="school"
-              minlength="2"
-              [ngStyle]="{
-                'border-color':
-                  education.get('school')?.invalid &&
-                  education.get('school')?.dirty
-                    ? '#EF5050'
-                    : '#98E37E'
-              }"
-              [ngStyle]="{
-                'border-color':
-                  education.get('school')?.value?.length == 0 ? '#bcbcbc' : ''
-              }"
-            />
-            <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
-              მინიმუმ 2 სიმბოლო
-            </p>
-          </div>
-          <div class="all__firstCon__inputCon__mainCon__both">
-            <div class="all__firstCon__inputCon__mainCon__both__nameCon">
-              <label for="quality">{{ item.two }}</label>
-              <select
-                name="cars"
-                id="cars"
-                class="all__firstCon__inputCon__mainCon__both__nameCon__selected"
-                formControlName="quality"
-                [ngStyle]="{
-                  'border-color':
-                    education.get('quality')?.invalid &&
-                    education.get('quality')?.dirty
-                      ? '#EF5050'
-                      : '#98E37E'
-                }"
-                [ngStyle]="{
-                  'border-color':
-                    education.get('quality')?.value?.length == 0
-                      ? '#bcbcbc'
-                      : ''
-                }"
-              >
-                <option
-                  class="all__firstCon__inputCon__mainCon__both__nameCon__selected__items"
-                  value=""
-                  disabled
-                  selected
-                  hidden
+        <div formArrayName="inputs">
+          <div class="ngFor" *ngFor="let item of inputs.controls; index as i">
+            <div [formGroupName]="i">
+              <div class="all__firstCon__inputCon__mainCon__mobileNumber">
+                <label for="school">სასწავლებელი</label>
+                <input
+                  class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
+                  type="text"
+                  required
+                  placeholder="სასწავლებელი"
+                  formControlName="school"
+                  minlength="2"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('school')?.invalid && item.get('school')?.dirty
+                        ? '#EF5050'
+                        : '#98E37E'
+                  }"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('school')?.value?.length == 0 ? '#bcbcbc' : ''
+                  }"
+                />
+                <p
+                  class="all__firstCon__inputCon__mainCon__mobileNumber__required"
                 >
-                  აირჩიეთ ხარისხი
-                </option>
-                <option
-                  class="all__firstCon__inputCon__mainCon__both__nameCon__selected__items"
-                  *ngFor="let API of itemAPI"
-                  [value]="API?.title"
+                  მინიმუმ 2 სიმბოლო
+                </p>
+              </div>
+              <div class="all__firstCon__inputCon__mainCon__both">
+                <div class="all__firstCon__inputCon__mainCon__both__nameCon">
+                  <label for="quality">ხარისხი</label>
+                  <select
+                    name="cars"
+                    id="cars"
+                    class="all__firstCon__inputCon__mainCon__both__nameCon__selected"
+                    formControlName="quality"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('quality')?.invalid &&
+                        item.get('quality')?.dirty
+                          ? '#EF5050'
+                          : '#98E37E'
+                    }"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('quality')?.value?.length == 0 ? '#bcbcbc' : ''
+                    }"
+                  >
+                    <option
+                      class="all__firstCon__inputCon__mainCon__both__nameCon__selected__items"
+                      value=""
+                      disabled
+                      selected
+                      hidden
+                    >
+                      აირჩიეთ ხარისხი
+                    </option>
+                    <option
+                      class="all__firstCon__inputCon__mainCon__both__nameCon__selected__items"
+                      *ngFor="let API of itemAPI"
+                      [value]="API?.id"
+                    >
+                      {{ API?.title }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  class="all__firstCon__inputCon__mainCon__both__lastnameCon"
                 >
-                  {{ API?.title }}
-                </option>
-              </select>
+                  <p>დამთავრების თარიღი</p>
+                  <input
+                    class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
+                    type="date"
+                    name="lastname"
+                    required
+                    formControlName="endDate"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('endDate')?.invalid &&
+                        item.get('endDate')?.dirty
+                          ? '#EF5050'
+                          : '#98E37E'
+                    }"
+                    [ngStyle]="{
+                      'border-color':
+                        item.get('endDate')?.value?.length == 0 ? '#bcbcbc' : ''
+                    }"
+                  />
+                </div>
+              </div>
+              <div class="all__firstCon__inputCon__mainCon__description">
+                <label for="description">აღწერა</label>
+                <input
+                  class="all__firstCon__inputCon__mainCon__description__text"
+                  type="text"
+                  placeholder="განათლების აღწერა"
+                  formControlName="description"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('description')?.invalid &&
+                      item.get('description')?.dirty
+                        ? '#EF5050'
+                        : '#98E37E'
+                  }"
+                  [ngStyle]="{
+                    'border-color':
+                      item.get('description')?.value?.length == 0
+                        ? '#bcbcbc'
+                        : ''
+                  }"
+                />
+              </div>
             </div>
-            <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
-              <p>{{ item.three }}</p>
-              <input
-                class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
-                type="date"
-                name="lastname"
-                required
-                formControlName="endDate"
-                [ngStyle]="{
-                  'border-color':
-                    education.get('endDate')?.invalid &&
-                    education.get('endDate')?.dirty
-                      ? '#EF5050'
-                      : '#98E37E'
-                }"
-                [ngStyle]="{
-                  'border-color':
-                    education.get('endDate')?.value?.length == 0
-                      ? '#bcbcbc'
-                      : ''
-                }"
-              />
-            </div>
-          </div>
-          <div class="all__firstCon__inputCon__mainCon__description">
-            <label for="description">{{ item.four }}</label>
-            <input
-              class="all__firstCon__inputCon__mainCon__description__text"
-              type="text"
-              placeholder="განათლების აღწერა"
-              formControlName="description"
-              [ngStyle]="{
-                'border-color':
-                  education.get('description')?.invalid &&
-                  education.get('description')?.dirty
-                    ? '#EF5050'
-                    : '#98E37E'
-              }"
-              [ngStyle]="{
-                'border-color':
-                  education.get('description')?.value?.length == 0
-                    ? '#bcbcbc'
-                    : ''
-              }"
-            />
           </div>
         </div>
-
         <div class="all__firstCon__inputCon__mainCon__moreExperience">
           <button
             class="all__firstCon__inputCon__mainCon__moreExperience__btn"

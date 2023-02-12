@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,53 +20,48 @@ export class EducationComponent implements OnInit {
   descriptionValidator(control: FormControl) {
     const description = control.value;
     if (description && description.length === 0) {
-      return { email: true };
+      return { description: true };
     }
     return null;
   }
 
   education = new FormGroup({
-    school: new FormControl('', [Validators.required]),
-    quality: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required]),
-    description: new FormControl('', [
-      Validators.required,
-      this.descriptionValidator,
+    inputs: new FormArray([
+      new FormGroup({
+        school: new FormControl('', [Validators.required]),
+        quality: new FormControl('', [Validators.required]),
+        endDate: new FormControl('', [Validators.required]),
+        description: new FormControl('', [
+          Validators.required,
+          this.descriptionValidator,
+        ]),
+      }),
     ]),
   });
-  formInputs = [
-    {
-      id: 1,
-      one: 'სასწავლებელი',
-      two: 'ხარისხი',
-      three: 'დამთავრების თარიღი',
-      four: 'აღწერა',
-    },
-  ];
-
-  new = {
-    id: 2,
-    one: 'სასწავლებელი',
-    two: 'ხარისხი',
-    three: 'დამთავრების თარიღი',
-    four: 'აღწერა',
-  };
 
   ngOnInit(): void {
-    console.log(
-      this.dataService.getData().subscribe((data) => {
-        this.itemAPI = data;
-      })
-    );
+    this.dataService.getData().subscribe((data) => {
+      this.itemAPI = data;
+    });
   }
+
+  get inputs() {
+    return this.education.get('inputs') as FormArray;
+  }
+
   addNewForm(event: any) {
     event.preventDefault();
-    this.formInputs.push({ ...this.new });
-    this.formInputs = this.formInputs.map((z, i) => {
-      z.id = 1 + i;
-      return z;
-    });
-    console.log(this.formInputs);
+    this.inputs.push(
+      new FormGroup({
+        school: new FormControl('', [Validators.required]),
+        quality: new FormControl('', [Validators.required]),
+        endDate: new FormControl('', [Validators.required]),
+        description: new FormControl('', [
+          Validators.required,
+          this.descriptionValidator,
+        ]),
+      })
+    );
   }
 
   end() {
