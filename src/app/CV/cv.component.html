@@ -47,8 +47,10 @@
         />
       </div>
     </div>
-    <div class="all__allCon__experienceCon">
-      <p class="all__allCon__experienceCon__title">გამოცდილება</p>
+    <div class="all__allCon__experienceCon" *ngIf="experienceInfo">
+      <p class="all__allCon__experienceCon__title" *ngIf="experienceInfo">
+        გამოცდილება
+      </p>
       <div
         class="all__allCon__experienceCon__position"
         *ngFor="let exp of experienceInfo"
@@ -66,7 +68,7 @@
         </p>
       </div>
     </div>
-    <div class="all__allCon__educationCon">
+    <div class="all__allCon__educationCon" *ngIf="educationInfo">
       <p class="all__allCon__educationCon__title">განათლება</p>
       <div
         class="all__allCon__educationCon__position"

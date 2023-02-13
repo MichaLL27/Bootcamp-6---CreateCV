@@ -57,6 +57,10 @@ export class EducationComponent implements OnInit {
     return this.education.get('inputs') as FormArray;
   }
 
+  savePersonalInfo(data: any): void {
+    localStorage.setItem('education', JSON.stringify(data));
+  }
+
   addNewForm(event: any) {
     event.preventDefault();
     this.inputs.push(
@@ -74,8 +78,9 @@ export class EducationComponent implements OnInit {
 
   endBtn() {
     if (this.education.valid) {
-      this.router.navigate(['/FinishCV']);
       localStorage.clear();
+      this.router.navigate(['/FinishCV']);
+      this.savePersonalInfo(this.inputs.value);
       this.dataService.finishEducation = this.inputs.value;
     } else {
       this.validateAllFormFields(this.education);
@@ -92,5 +97,6 @@ export class EducationComponent implements OnInit {
   backBTN() {
     localStorage.clear();
     this.router.navigate(['/Main']);
+    this.dataService.postResume(this.dataService);
   }
 }

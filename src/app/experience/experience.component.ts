@@ -48,10 +48,15 @@ export class ExperienceComponent implements OnInit {
       })
     );
   }
+
+  savePersonalInfo(data: any): void {
+    localStorage.setItem('experience', JSON.stringify(data));
+  }
   nextSectionBtn() {
     if (this.inputs.valid) {
-      this.router.navigate(['/Education']);
       localStorage.clear();
+      this.router.navigate(['/Education']);
+      this.savePersonalInfo(this.inputs.value);
       this.dataService.finishExperience = this.inputs.value;
     } else {
       this.validateAllFormFields(this.experience);

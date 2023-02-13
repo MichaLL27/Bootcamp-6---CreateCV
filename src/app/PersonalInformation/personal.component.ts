@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, UrlSerializer } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
 import { DataService } from '../data.service';
 
@@ -11,7 +11,6 @@ import { DataService } from '../data.service';
 export class personalInfoComponent implements OnInit {
   id = 1;
   inputPersonal: any;
-  createPersonalInfo: any;
   url = '';
   constructor(private router: Router, private dataService: DataService) {}
 
@@ -22,14 +21,15 @@ export class personalInfoComponent implements OnInit {
     }
     return null;
   }
+
   personalInfo = new FormGroup({
     name: new FormControl('', [
       Validators.required,
-      Validators.pattern('[ა-ჰ].*'),
+      Validators.pattern(/^[ა-ჰ]{2,}$/),
     ]),
     lastName: new FormControl('', [
       Validators.required,
-      Validators.pattern('[ა-ჰ].*'),
+      Validators.pattern(/^[ა-ჰ]{2,}$/),
     ]),
     description: new FormControl(''),
     image: new FormControl(''),
@@ -44,10 +44,15 @@ export class personalInfoComponent implements OnInit {
       this.personalInfo.patchValue({ image: this.url });
     };
   }
+
+  savePersonalInfo(): void {
+    localStorage.setItem('personal', JSON.stringify(this.personalInfo.value));
+  }
+
   ngOnInit(): void {
     const formValue = localStorage.getItem('formData');
     if (formValue) {
-      this.personalInfo.setValue(JSON.parse(formValue));
+      this.dataService.finishPersonalInfo.setValue(JSON.parse(formValue));
     }
     this.personalInfo.valueChanges.pipe(debounceTime(10)).subscribe((val) => {
       localStorage.setItem('formData', JSON.stringify(val));
@@ -55,19 +60,12 @@ export class personalInfoComponent implements OnInit {
   }
 
   personal() {
-    this.createPersonalInfo = {
-      name: this.personalInfo.controls.name.value,
-      lastName: this.personalInfo.controls.lastName.value,
-      description: this.personalInfo.controls.description.value,
-      email: this.personalInfo.controls.email.value,
-      mobileNum: this.personalInfo.controls.mobileNum.value,
-      image: this.personalInfo.controls.image.value,
-    };
-    console.log(this.createPersonalInfo);
-    this.dataService.finishPersonalInfo = this.createPersonalInfo;
     if (this.personalInfo.valid) {
       this.router.navigate(['/Experience']);
       localStorage.clear();
+      this.savePersonalInfo();
+      this.dataService.finishPersonalInfo = this.personalInfo.value;
+      this.dataService.item = this.personalInfo.value;
     } else {
       this.validateAllFormFields(this.personalInfo);
     }
