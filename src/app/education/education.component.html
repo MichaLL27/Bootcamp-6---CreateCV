@@ -3,7 +3,11 @@
     <div class="all__firstCon__titleCon">
       <div class="all__firstCon__titleCon__title">
         <div class="all__firstCon__titleCon__title__photo">
-          <img src="../../assets/images/backVector.png" />
+          <img
+            class="backBTN"
+            (click)="backBTN()"
+            src="../../assets/images/backVector.png"
+          />
         </div>
         <div class="all__firstCon__titleCon__title__title">
           <div class="all__firstCon__titleCon__title__title__text">
@@ -82,7 +86,7 @@
                     <option
                       class="all__firstCon__inputCon__mainCon__both__nameCon__selected__items"
                       *ngFor="let API of itemAPI"
-                      [value]="API?.id"
+                      [value]="API?.title"
                     >
                       {{ API?.title }}
                     </option>
@@ -154,7 +158,7 @@
           </button>
           <button
             class="all__firstCon__inputCon__mainCon__btnDiv__btn"
-            (click)="end()"
+            (click)="endBtn()"
           >
             დასრულება
           </button>
@@ -163,6 +167,6 @@
     </div>
   </div>
   <div class="all__secondCon">
-    <cv-component [educationInfo]="education.value"></cv-component>
+    <cv-component [educationInfo]="inputs.value"></cv-component>
   </div>
 </div>

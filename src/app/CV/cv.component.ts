@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 import { personalInfoComponent } from '../PersonalInformation/personal.component';
 
 @Component({
@@ -8,12 +9,20 @@ import { personalInfoComponent } from '../PersonalInformation/personal.component
 })
 export class CvComponent implements OnInit {
   item: any;
-  constructor(private person: personalInfoComponent) {}
+  constructor(private dataService: DataService) {}
   @Input() personalInformation: any;
   @Input() experienceInfo: any;
   @Input() educationInfo: any;
 
   ngOnInit(): void {
-    console.log(this.personalInformation + 'idc');
+    if (this.dataService.finishPersonalInfo) {
+      this.personalInformation = this.dataService.finishPersonalInfo;
+    }
+    if (this.dataService.finishExperience) {
+      this.experienceInfo = this.dataService.finishExperience;
+    }
+    if (this.dataService.finishEducation) {
+      this.educationInfo = this.dataService.finishEducation;
+    }
   }
 }

@@ -1,36 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs';
+import { DataService } from '../data.service';
 @Component({
   templateUrl: 'experience.component.html',
   styleUrls: ['./experience.component.scss'],
 })
 export class ExperienceComponent implements OnInit {
   idPage = 2;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dataService: DataService) {}
 
   experience = new FormGroup({
     inputs: new FormArray([
       new FormGroup({
-        position: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^[ა-ჰ]{2,}$/),
-        ]),
-        employer: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^[ა-ჰ]{2,}$/),
-        ]),
+        position: new FormControl('', [Validators.required]),
+        employer: new FormControl('', [Validators.required]),
         startDate: new FormControl('', [Validators.required]),
         endDate: new FormControl('', [Validators.required]),
-        description: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^[ა-ჰ]{2,}$/),
-        ]),
+        description: new FormControl('', [Validators.required]),
       }),
     ]),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const formValue = localStorage.getItem('formData');
+    if (formValue) {
+      this.experience.setValue(JSON.parse(formValue));
+    }
+    this.experience.valueChanges.pipe(debounceTime(10)).subscribe((val) => {
+      localStorage.setItem('formData', JSON.stringify(val));
+    });
+  }
 
   get inputs() {
     return this.experience.get('inputs') as FormArray;
@@ -39,27 +40,19 @@ export class ExperienceComponent implements OnInit {
     event.preventDefault();
     this.inputs.push(
       new FormGroup({
-        position: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^[ა-ჰ]{2,}$/),
-        ]),
-        employer: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^[ა-ჰ]{2,}$/),
-        ]),
+        position: new FormControl('', [Validators.required]),
+        employer: new FormControl('', [Validators.required]),
         startDate: new FormControl('', [Validators.required]),
         endDate: new FormControl('', [Validators.required]),
-        description: new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^[ა-ჰ]{2,}$/),
-        ]),
+        description: new FormControl('', [Validators.required]),
       })
     );
   }
-  nextSection() {
-    console.log(this.inputs.value);
-    if (this.experience.valid) {
+  nextSectionBtn() {
+    if (this.inputs.valid) {
       this.router.navigate(['/Education']);
+      localStorage.clear();
+      this.dataService.finishExperience = this.inputs.value;
     } else {
       this.validateAllFormFields(this.experience);
     }
@@ -71,5 +64,8 @@ export class ExperienceComponent implements OnInit {
         control.markAsDirty({ onlySelf: true });
       }
     });
+  }
+  backBTN() {
+    this.router.navigate(['/Main']);
   }
 }

@@ -3,7 +3,11 @@
     <div class="all__firstCon__titleCon">
       <div class="all__firstCon__titleCon__title">
         <div class="all__firstCon__titleCon__title__photo">
-          <img src="../../assets/images/backVector.png" />
+          <img
+            class="backBTN"
+            (click)="backBTN()"
+            src="../../assets/images/backVector.png"
+          />
         </div>
         <div class="all__firstCon__titleCon__title__title">
           <div class="all__firstCon__titleCon__title__title__text">
@@ -122,18 +126,22 @@
           </div>
         </div>
         <div class="all__firstCon__inputCon__mainCon__uploadPhoto">
-          <label
-            class="all__firstCon__inputCon__mainCon__uploadPhoto__txt"
-            for="img"
+          <label class="all__firstCon__inputCon__mainCon__uploadPhoto__txt"
             >პირადი ფოტოს ატვირთვა</label
           >
-          <button
+          <label
             class="all__firstCon__inputCon__mainCon__uploadPhoto__btn"
-            formControlName="image"
-            (click)="uploadPhoto()"
+            for="file-input"
+            >ატვირთვა</label
           >
-            ატვირთვა
-          </button>
+          <input
+            formControlName="image"
+            type="file"
+            accept="image/*"
+            id="file-input"
+            style="display: none"
+            (change)="onFileChange($event)"
+          />
         </div>
         <div class="all__firstCon__inputCon__mainCon__description">
           <label

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
+import { DataService } from '../data.service';
 
 @Component({
   templateUrl: 'personal.component.html',
@@ -9,10 +10,10 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class personalInfoComponent implements OnInit {
   id = 1;
-
   inputPersonal: any;
   createPersonalInfo: any;
-  constructor(private router: Router) {}
+  url = '';
+  constructor(private router: Router, private dataService: DataService) {}
 
   emailValidator(control: FormControl) {
     const email = control.value;
@@ -21,7 +22,6 @@ export class personalInfoComponent implements OnInit {
     }
     return null;
   }
-
   personalInfo = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -31,12 +31,19 @@ export class personalInfoComponent implements OnInit {
       Validators.required,
       Validators.pattern('[ა-ჰ].*'),
     ]),
-    // image: new FormControl('', [Validators.required]),
     description: new FormControl(''),
+    image: new FormControl(''),
     email: new FormControl('', [Validators.required, this.emailValidator]),
     mobileNum: new FormControl('', [Validators.required]),
   });
-
+  onFileChange(event: any) {
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event: any) => {
+      this.url = event.target.result;
+      this.personalInfo.patchValue({ image: this.url });
+    };
+  }
   ngOnInit(): void {
     const formValue = localStorage.getItem('formData');
     if (formValue) {
@@ -45,22 +52,6 @@ export class personalInfoComponent implements OnInit {
     this.personalInfo.valueChanges.pipe(debounceTime(10)).subscribe((val) => {
       localStorage.setItem('formData', JSON.stringify(val));
     });
-    console.log(this.personalInfo);
-  }
-
-  uploadPhoto() {}
-
-  private savePersonalInfo() {
-    localStorage.setItem('formData', JSON.stringify(this.createPersonalInfo));
-  }
-
-  getPersonalInfo() {
-    const persInfo = localStorage.getItem('formData');
-    if (persInfo) {
-      return (this.personalInfo = JSON.parse(persInfo));
-    } else {
-      return this.personalInfo;
-    }
   }
 
   personal() {
@@ -70,16 +61,18 @@ export class personalInfoComponent implements OnInit {
       description: this.personalInfo.controls.description.value,
       email: this.personalInfo.controls.email.value,
       mobileNum: this.personalInfo.controls.mobileNum.value,
+      image: this.personalInfo.controls.image.value,
     };
+    console.log(this.createPersonalInfo);
+    this.dataService.finishPersonalInfo = this.createPersonalInfo;
     if (this.personalInfo.valid) {
       this.router.navigate(['/Experience']);
       localStorage.clear();
-      this.savePersonalInfo();
-      this.getPersonalInfo();
     } else {
       this.validateAllFormFields(this.personalInfo);
     }
   }
+
   private validateAllFormFields(formGroup: FormGroup) {
     return Object.keys(formGroup.controls).forEach((field) => {
       const control = formGroup.get(field);
@@ -87,5 +80,9 @@ export class personalInfoComponent implements OnInit {
         control.markAsDirty({ onlySelf: true });
       }
     });
+  }
+  backBTN() {
+    localStorage.clear();
+    this.router.navigate(['/Main']);
   }
 }

@@ -10,6 +10,7 @@ import { personalInfoComponent } from './PersonalInformation/personal.component'
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CvComponent } from './CV/cv.component';
+import { FinishCvComponent } from './FinishCV/finish.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CvComponent } from './CV/cv.component';
     ExperienceComponent,
     EducationComponent,
     CvComponent,
+    FinishCvComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { CvComponent } from './CV/cv.component';
     personalInfoComponent,
     ExperienceComponent,
     EducationComponent,
+    FinishCvComponent,
   ],
   bootstrap: [AppComponent],
 })

@@ -11,15 +11,24 @@
         </div>
         <div>
           <div class="all__allCon__mainCon__nameCon__emailCon">
-            <img src="../../assets/images/Vector@.png" />
+            <img
+              src="/assets/images/Vector@.png"
+              *ngIf="personalInformation?.email"
+            />
             <p>{{ personalInformation?.email }}</p>
           </div>
           <div class="all__allCon__mainCon__nameCon__numCon">
-            <img src="../../assets/images/Vectornumber.png" />
-            <p>{{ "+" + personalInformation?.mobileNum }}</p>
+            <img
+              src="/assets/images/Vectornumber.png"
+              *ngIf="personalInformation?.mobileNum"
+            />
+            <p>{{ personalInformation?.mobileNum }}</p>
           </div>
         </div>
-        <div class="all__allCon__mainCon__nameCon__myInfoCon">
+        <div
+          class="all__allCon__mainCon__nameCon__myInfoCon"
+          *ngIf="personalInformation?.description.length > 0"
+        >
           <p class="all__allCon__mainCon__nameCon__myInfoCon__text">
             ჩემს შესახებ
           </p>
@@ -28,42 +37,51 @@
           </div>
         </div>
       </div>
-      <div class="all__allCon__mainCon__imageCon">
+      <div
+        class="all__allCon__mainCon__imageCon"
+        *ngIf="personalInformation?.image"
+      >
         <img
           class="all__allCon__mainCon__imageCon__img"
-          src="https://pbs.twimg.com/profile_images/1267289480379215872/7kHprhR3_400x400.jpg"
+          [src]="personalInformation?.image"
         />
       </div>
     </div>
     <div class="all__allCon__experienceCon">
       <p class="all__allCon__experienceCon__title">გამოცდილება</p>
-      <div class="all__allCon__experienceCon__position">
+      <div
+        class="all__allCon__experienceCon__position"
+        *ngFor="let exp of experienceInfo"
+      >
         <div class="all__allCon__experienceCon__position__texts">
           <p class="all__allCon__experienceCon__position__texts__texts1">
-            {{ experienceInfo?.position + " " + experienceInfo?.employer }}
+            {{ exp?.position + " " + exp?.employer }}
           </p>
           <p class="all__allCon__experienceCon__position__texts__texts2">
-            {{ experienceInfo?.startDate + "  " + experienceInfo?.endDate }}
+            {{ exp?.startDate + "  " + exp?.endDate }}
           </p>
         </div>
         <p class="all__allCon__experienceCon__position__description">
-          {{ experienceInfo?.description }}
+          {{ exp?.description }}
         </p>
       </div>
     </div>
     <div class="all__allCon__educationCon">
       <p class="all__allCon__educationCon__title">განათლება</p>
-      <div class="all__allCon__educationCon__position">
+      <div
+        class="all__allCon__educationCon__position"
+        *ngFor="let edu of educationInfo"
+      >
         <div class="all__allCon__educationCon__position__texts">
           <p class="all__allCon__educationCon__position__texts__texts1">
-            {{ educationInfo?.school + " " + educationInfo?.quality }}
+            {{ edu?.school + " " + edu?.quality }}
           </p>
           <p class="all__allCon__educationCon__position__texts__texts2">
-            {{ educationInfo?.endDate }}
+            {{ edu?.endDate }}
           </p>
         </div>
         <p class="all__allCon__educationCon__position__description">
-          {{ educationInfo?.description }}
+          {{ edu?.description }}
         </p>
       </div>
     </div>

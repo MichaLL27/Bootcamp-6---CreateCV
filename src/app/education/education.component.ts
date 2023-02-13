@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs';
 
 @Component({
   templateUrl: 'education.component.html',
@@ -43,6 +44,13 @@ export class EducationComponent implements OnInit {
     this.dataService.getData().subscribe((data) => {
       this.itemAPI = data;
     });
+    const formValue = localStorage.getItem('formData');
+    if (formValue) {
+      this.education.setValue(JSON.parse(formValue));
+    }
+    this.education.valueChanges.pipe(debounceTime(10)).subscribe((val) => {
+      localStorage.setItem('formData', JSON.stringify(val));
+    });
   }
 
   get inputs() {
@@ -64,9 +72,11 @@ export class EducationComponent implements OnInit {
     );
   }
 
-  end() {
+  endBtn() {
     if (this.education.valid) {
-      this.router.navigate(['/Education']);
+      this.router.navigate(['/FinishCV']);
+      localStorage.clear();
+      this.dataService.finishEducation = this.inputs.value;
     } else {
       this.validateAllFormFields(this.education);
     }
@@ -78,5 +88,9 @@ export class EducationComponent implements OnInit {
         control.markAsDirty({ onlySelf: true });
       }
     });
+  }
+  backBTN() {
+    localStorage.clear();
+    this.router.navigate(['/Main']);
   }
 }

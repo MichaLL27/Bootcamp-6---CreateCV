@@ -3,7 +3,11 @@
     <div class="all__firstCon__titleCon">
       <div class="all__firstCon__titleCon__title">
         <div class="all__firstCon__titleCon__title__photo">
-          <img src="../../assets/images/backVector.png" />
+          <img
+            class="backBTN"
+            (click)="backBTN()"
+            src="../../assets/images/backVector.png"
+          />
         </div>
         <div class="all__firstCon__titleCon__title__title">
           <div class="all__firstCon__titleCon__title__title__text">
@@ -189,7 +193,7 @@
           </button>
           <button
             class="all__firstCon__inputCon__mainCon__btnDiv__btn"
-            (click)="nextSection()"
+            (click)="nextSectionBtn()"
           >
             შემდეგი
           </button>
