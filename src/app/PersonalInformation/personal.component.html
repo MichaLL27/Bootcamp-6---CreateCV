@@ -23,16 +23,14 @@
         </div>
       </div>
     </div>
-    <div class="all__firstCon__inputCon">
-      <form [formGroup]="personalInfo" class="all__firstCon__inputCon__mainCon">
-        <div class="all__firstCon__inputCon__mainCon__both">
-          <div class="all__firstCon__inputCon__mainCon__both__nameCon">
-            <p class="all__firstCon__inputCon__mainCon__both__nameCon__txt">
-              სახელი
-            </p>
+    <div class="inputCon">
+      <form [formGroup]="personalInfo" class="inputCon__mainCon">
+        <div class="inputCon__mainCon__both">
+          <div class="inputCon__mainCon__both__nameCon">
+            <p class="inputCon__mainCon__both__nameCon__txt">სახელი</p>
             <div class="vlaidOrInvalid">
               <input
-                class="all__firstCon__inputCon__mainCon__both__nameCon__name"
+                class="inputCon__mainCon__both__nameCon__name"
                 [ngStyle]="{
                   'border-color':
                     personalInfo.get('name')?.invalid &&
@@ -69,19 +67,15 @@
                 src="/assets/images/Vectorinvalid.png"
               />
             </div>
-            <p
-              class="all__firstCon__inputCon__mainCon__both__nameCon__required"
-            >
+            <p class="inputCon__mainCon__both__nameCon__required">
               მინიმუმ 2 ასო, ქართული ასოები
             </p>
           </div>
-          <div class="all__firstCon__inputCon__mainCon__both__lastnameCon">
-            <p class="all__firstCon__inputCon__mainCon__both__lastnameCon__txt">
-              გვარი
-            </p>
+          <div class="inputCon__mainCon__both__lastnameCon">
+            <p class="inputCon__mainCon__both__lastnameCon__txt">გვარი</p>
             <div class="vlaidOrInvalid">
               <input
-                class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
+                class="inputCon__mainCon__both__lastnameCon__lastName"
                 type="text"
                 name="lastname"
                 placeholder="მუმლაძე"
@@ -118,20 +112,16 @@
                 src="/assets/images/Vectorinvalid.png"
               />
             </div>
-            <p
-              class="all__firstCon__inputCon__mainCon__both__nameCon__required"
-            >
+            <p class="inputCon__mainCon__both__nameCon__required">
               მინიმუმ 2 ასო, ქართული ასოები
             </p>
           </div>
         </div>
-        <div class="all__firstCon__inputCon__mainCon__uploadPhoto">
-          <label class="all__firstCon__inputCon__mainCon__uploadPhoto__txt"
+        <div class="inputCon__mainCon__uploadPhoto">
+          <label class="inputCon__mainCon__uploadPhoto__txt"
             >პირადი ფოტოს ატვირთვა</label
           >
-          <label
-            class="all__firstCon__inputCon__mainCon__uploadPhoto__btn"
-            for="file-input"
+          <label class="inputCon__mainCon__uploadPhoto__btn" for="file-input"
             >ატვირთვა</label
           >
           <input
@@ -143,14 +133,12 @@
             (change)="onFileChange($event)"
           />
         </div>
-        <div class="all__firstCon__inputCon__mainCon__description">
-          <label
-            class="all__firstCon__inputCon__mainCon__description__txt"
-            for="description"
+        <div class="inputCon__mainCon__description">
+          <label class="inputCon__mainCon__description__txt" for="description"
             >ჩემ შესახებ (არასავალდებულო)</label
           >
           <input
-            class="all__firstCon__inputCon__mainCon__description__text"
+            class="inputCon__mainCon__description__text"
             type="text"
             placeholder="ზოგადი ინფო შენ შესახებ"
             formControlName="description"
@@ -167,13 +155,13 @@
             }"
           />
         </div>
-        <div class="all__firstCon__inputCon__mainCon__mail">
-          <label class="all__firstCon__inputCon__mainCon__mail__txt" for="mail"
+        <div class="inputCon__mainCon__mail">
+          <label class="inputCon__mainCon__mail__txt" for="mail"
             >ელ.ფოსტა</label
           >
           <div class="vlaidOrInvalid">
             <input
-              class="all__firstCon__inputCon__mainCon__mail__mailTxt"
+              class="inputCon__mainCon__mail__mailTxt"
               type="email"
               required
               placeholder="anzorr666@redberry.ge"
@@ -206,19 +194,17 @@
               src="/assets/images/Vectorinvalid.png"
             />
           </div>
-          <p class="all__firstCon__inputCon__mainCon__mail__required">
+          <p class="inputCon__mainCon__mail__required">
             უნდა მთავრდებოდეს @redberry.ge-ით
           </p>
         </div>
-        <div class="all__firstCon__inputCon__mainCon__mobileNumber">
-          <label
-            for="number"
-            class="all__firstCon__inputCon__mainCon__mobileNumber__txt"
+        <div class="inputCon__mainCon__mobileNumber">
+          <label for="number" class="inputCon__mainCon__mobileNumber__txt"
             >მობილურის ნომერი</label
           >
           <div class="vlaidOrInvalid">
             <input
-              class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
+              class="inputCon__mainCon__mobileNumber__mobileNum"
               type="number"
               placeholder="+995 551 12 34 56"
               required
@@ -256,14 +242,14 @@
               src="/assets/images/Vectorinvalid.png"
             />
           </div>
-          <p class="all__firstCon__inputCon__mainCon__mobileNumber__required">
+          <p class="inputCon__mainCon__mobileNumber__required">
             უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
           </p>
         </div>
-        <div class="all__firstCon__inputCon__mainCon__btnDiv">
+        <div class="inputCon__mainCon__btnDiv">
           <input
             type="submit"
-            class="all__firstCon__inputCon__mainCon__btnDiv__btn"
+            class="inputCon__mainCon__btnDiv__btn"
             (click)="personal()"
             value="შემდეგი"
           />

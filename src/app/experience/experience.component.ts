@@ -5,7 +5,7 @@ import { debounceTime } from 'rxjs';
 import { DataService } from '../data.service';
 @Component({
   templateUrl: 'experience.component.html',
-  styleUrls: ['./experience.component.scss'],
+  styleUrls: ['./experience.component.scss', './experience.component2.scss'],
 })
 export class ExperienceComponent implements OnInit {
   idPage = 2;

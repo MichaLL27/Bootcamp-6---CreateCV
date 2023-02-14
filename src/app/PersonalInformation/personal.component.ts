@@ -6,7 +6,7 @@ import { DataService } from '../data.service';
 
 @Component({
   templateUrl: 'personal.component.html',
-  styleUrls: ['./personal.component.scss'],
+  styleUrls: ['./personal.component.scss', './personal.component2.scss'],
 })
 export class personalInfoComponent implements OnInit {
   id = 1;

@@ -1,0 +1,197 @@
+.inputCon {
+  margin-top: 20px;
+  width: 82%;
+  height: auto;
+  display: flex;
+  justify-content: end;
+  &__mainCon {
+    width: 88%;
+    &__both {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 15px;
+      &__nameCon {
+        width: 50%;
+        height: 100px;
+        &__txt {
+          color: black;
+          font-family: "HelveticaNeue";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 21px;
+        }
+        &__name {
+          margin-top: 10px;
+          width: 90%;
+          height: 30px;
+          border: 1px solid #bcbcbc;
+          background: #ffffff;
+          border-radius: 4px;
+          outline: none;
+        }
+        &__name:focus {
+          border: 2px solid #bcbcbc;
+        }
+      }
+      &__lastnameCon {
+        width: 50%;
+        height: 100px;
+        &__txt {
+          color: black;
+          font-family: "HelveticaNeue";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 21px;
+        }
+        &__lastName {
+          margin-top: 10px;
+          width: 90%;
+          height: 30px;
+          border: 1px solid #bcbcbc;
+          background: #ffffff;
+          border-radius: 4px;
+          outline: none;
+        }
+        &__lastName:focus {
+          border: 2px solid #bcbcbc;
+        }
+      }
+    }
+    &__description {
+      display: flex;
+      flex-direction: column;
+      &__txt {
+        color: black;
+        font-family: "HelveticaNeue";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 21px;
+      }
+      &__text {
+        margin-top: 10px;
+        padding-bottom: 100px;
+        border: 1px solid #bcbcbc;
+        background: #ffffff;
+        border-radius: 4px;
+        outline: none;
+      }
+      &__text:focus {
+        border: 2px solid #bcbcbc;
+      }
+    }
+    &__mail {
+      margin-top: 25px;
+      height: 100px;
+      display: flex;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      &__txt {
+        color: black;
+        font-family: "HelveticaNeue";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 21px;
+      }
+      &__mailTxt {
+        border: 1px solid #bcbcbc;
+        background: #ffffff;
+        border-radius: 4px;
+        height: 30px;
+        outline: none;
+      }
+      &__mailTxt:focus {
+        border: 2px solid #bcbcbc;
+      }
+      &__required {
+        color: #2e2e2e;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 21px;
+      }
+    }
+    &__mobileNumber {
+      margin-top: 25px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      &__txt {
+        color: black;
+        font-family: "HelveticaNeue";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 21px;
+      }
+      &__mobileNum {
+        border: 1px solid #bcbcbc;
+        background: #ffffff;
+        border-radius: 4px;
+        height: 30px;
+        outline: none;
+      }
+      &__mobileNum:focus {
+        border: 2px solid #bcbcbc;
+      }
+
+      &__required {
+        color: #2e2e2e;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 21px;
+      }
+    }
+    &__moreExperience {
+      margin-top: 40px;
+      &__btn {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        background: #62a1eb;
+        border-radius: 4px;
+        border: none;
+        height: 40px;
+        width: 250px;
+        color: white;
+        margin-top: 30px;
+      }
+      &__btn:hover {
+        cursor: pointer;
+      }
+    }
+    &__btnDiv {
+      margin-top: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      &__btn {
+        width: 120px;
+        height: 40px;
+        background: #6b40e3;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        border: none;
+        margin: 0;
+      }
+      &__btn {
+        cursor: pointer;
+      }
+    }
+  }
+}

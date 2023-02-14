@@ -23,19 +23,20 @@
         </div>
       </div>
     </div>
-    <div class="all__firstCon__inputCon">
-      <form [formGroup]="experience" class="all__firstCon__inputCon__mainCon">
+
+    <div class="inputCon">
+      <form [formGroup]="experience" class="inputCon__mainCon">
         <div formArrayName="inputs">
           <div *ngFor="let item of inputs.controls; index as i" class="ngFor">
             <div [formGroupName]="i">
-              <div class="all__firstCon__inputCon__mainCon__mobileNumber">
+              <div class="inputCon__mainCon__mobileNumber">
                 <label
                   for="position"
-                  class="all__firstCon__inputCon__mainCon__mobileNumber__txt"
+                  class="inputCon__mainCon__mobileNumber__txt"
                   >თანამდებობა</label
                 >
                 <input
-                  class="all__firstCon__inputCon__mainCon__mobileNumber__mobileNum"
+                  class="inputCon__mainCon__mobileNumber__mobileNum"
                   type="text"
                   required
                   formControlName="position"
@@ -53,20 +54,16 @@
                       item.get('position')?.value?.length == 0 ? '#bcbcbc' : ''
                   }"
                 />
-                <p
-                  class="all__firstCon__inputCon__mainCon__mobileNumber__required"
-                >
+                <p class="inputCon__mainCon__mobileNumber__required">
                   მინიმუმ 2 სიმბოლო
                 </p>
               </div>
-              <div class="all__firstCon__inputCon__mainCon__mail">
-                <label
-                  for="employer"
-                  class="all__firstCon__inputCon__mainCon__mail__txt"
+              <div class="inputCon__mainCon__mail">
+                <label for="employer" class="inputCon__mainCon__mail__txt"
                   >დამსაქმებელი</label
                 >
                 <input
-                  class="all__firstCon__inputCon__mainCon__mail__mailTxt"
+                  class="inputCon__mainCon__mail__mailTxt"
                   type="text"
                   required
                   placeholder="დამსაქმელები"
@@ -84,19 +81,17 @@
                       item.get('employer')?.value?.length == 0 ? '#bcbcbc' : ''
                   }"
                 />
-                <p class="all__firstCon__inputCon__mainCon__mail__required">
+                <p class="inputCon__mainCon__mail__required">
                   მინიმუმ 2 სიმბოლო
                 </p>
               </div>
-              <div class="all__firstCon__inputCon__mainCon__both">
-                <div class="all__firstCon__inputCon__mainCon__both__nameCon">
-                  <p
-                    class="all__firstCon__inputCon__mainCon__both__nameCon__txt"
-                  >
+              <div class="inputCon__mainCon__both">
+                <div class="inputCon__mainCon__both__nameCon">
+                  <p class="inputCon__mainCon__both__nameCon__txt">
                     დაწყების თარიღი
                   </p>
                   <input
-                    class="all__firstCon__inputCon__mainCon__both__nameCon__name"
+                    class="inputCon__mainCon__both__nameCon__name"
                     type="date"
                     name="name"
                     required
@@ -116,16 +111,12 @@
                     }"
                   />
                 </div>
-                <div
-                  class="all__firstCon__inputCon__mainCon__both__lastnameCon"
-                >
-                  <p
-                    class="all__firstCon__inputCon__mainCon__both__lastnameCon__txt"
-                  >
+                <div class="inputCon__mainCon__both__lastnameCon">
+                  <p class="inputCon__mainCon__both__lastnameCon__txt">
                     დამთავრების თარიღი
                   </p>
                   <input
-                    class="all__firstCon__inputCon__mainCon__both__lastnameCon__lastName"
+                    class="inputCon__mainCon__both__lastnameCon__lastName"
                     type="date"
                     name="lastname"
                     required
@@ -144,15 +135,15 @@
                   />
                 </div>
               </div>
-              <div class="all__firstCon__inputCon__mainCon__description">
+              <div class="inputCon__mainCon__description">
                 <p
                   for="description"
-                  class="all__firstCon__inputCon__mainCon__description__txt"
+                  class="inputCon__mainCon__description__txt"
                 >
                   აღწერა
                 </p>
                 <input
-                  class="all__firstCon__inputCon__mainCon__description__text"
+                  class="inputCon__mainCon__description__text"
                   type="text"
                   placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                   formControlName="description"
@@ -176,23 +167,23 @@
           </div>
         </div>
 
-        <div class="all__firstCon__inputCon__mainCon__moreExperience">
+        <div class="inputCon__mainCon__moreExperience">
           <button
-            class="all__firstCon__inputCon__mainCon__moreExperience__btn"
+            class="inputCon__mainCon__moreExperience__btn"
             (click)="addNewForm($event)"
           >
             მეტი გამოცდილების დამატება
           </button>
         </div>
-        <div class="all__firstCon__inputCon__mainCon__btnDiv">
+        <div class="inputCon__mainCon__btnDiv">
           <button
-            class="all__firstCon__inputCon__mainCon__btnDiv__btn"
+            class="inputCon__mainCon__btnDiv__btn"
             [routerLink]="['/Personalinformation']"
           >
             უკან
           </button>
           <button
-            class="all__firstCon__inputCon__mainCon__btnDiv__btn"
+            class="inputCon__mainCon__btnDiv__btn"
             (click)="nextSectionBtn()"
           >
             შემდეგი
